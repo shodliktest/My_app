@@ -1,0 +1,86 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:   # Manual: Actions → Build Android APK → Run workflow
+  push:
+    branches: [main, master]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline
+
+      - name: Build web app
+        env:
+          VITE_AUTH_ENABLED: 'false'
+        run: |
+          # Build; db:migrate skips when DATABASE_URL is unset
+          npm run build
+          # Ensure Capacitor webDir exists (TanStack Start → dist/client)
+          if [ -d "dist/client" ]; then
+            echo "Found dist/client"
+          elif [ -d "dist" ]; then
+            mkdir -p dist/client
+            cp -r dist/* dist/client/ 2>/dev/null || true
+            # if dist already is client-like, symlink
+            ls -la dist/
+          elif [ -d ".output/public" ]; then
+            mkdir -p dist/client
+            cp -r .output/public/* dist/client/
+          else
+            echo "Looking for build output..."
+            find . -maxdepth 3 -type d -name "client" -o -name "public" | head -20
+            ls -la
+            exit 1
+          fi
+          ls -la dist/client/ | head -20
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Capacitor & add Android platform
+        run: |
+          npm install @capacitor/core @capacitor/cli @capacitor/android --save
+          npx cap add android || true
+          npx cap sync android
+
+      - name: Build debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Elli-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
+
+      - name: Summary
+        run: |
+          echo "### ✅ APK tayyor!" >> $GITHUB_STEP_SUMMARY
+          echo "Actions → Artifacts → **Elli-debug-apk** dan yuklab oling." >> $GITHUB_STEP_SUMMARY
+          ls -lh android/app/build/outputs/apk/debug/ || true
