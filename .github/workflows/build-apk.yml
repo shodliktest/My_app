@@ -4,14 +4,11 @@ on:
   workflow_dispatch:
   push:
     branches: [main, master]
-    paths-ignore:
-      - '**.md'
-      - 'LICENSE'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 40
 
     steps:
       - name: Checkout
@@ -30,78 +27,58 @@ jobs:
         env:
           VITE_AUTH_ENABLED: 'false'
         run: |
+          set -e
           npm run build
-
-          echo "=== Looking for static output ==="
-          find . -maxdepth 4 -type d \( -name "static" -o -name "client" -o -name "dist" -o -name ".output" \) 2>/dev/null | head -30
-          find . -maxdepth 5 -name "index.html" -not -path "./node_modules/*" 2>/dev/null | head -20
-
+          echo "=== Build done, searching output ==="
+          find . -maxdepth 5 -type d \( -name static -o -name client -o -name dist -o -name .output \) 2>/dev/null | head -20
+          find . -maxdepth 6 -name index.html -not -path './node_modules/*' 2>/dev/null | head -10
           mkdir -p dist/client
-
-          if [ -d ".vercel/output/static" ]; then
-            echo "Using .vercel/output/static"
+          if [ -d .vercel/output/static ]; then
+            echo "Copying .vercel/output/static"
             cp -a .vercel/output/static/. dist/client/
-          elif [ -d ".output/public" ]; then
-            echo "Using .output/public"
+          elif [ -d .output/public ]; then
+            echo "Copying .output/public"
             cp -a .output/public/. dist/client/
-          elif [ -d "dist" ] && [ -f "dist/index.html" ]; then
-            echo "Using dist/"
-            cp -a dist/. dist/client/
+          elif [ -f dist/index.html ]; then
+            echo "Copying dist"
+            cp -a dist/. dist/client/ || true
           else
-            HTML=$(find . -maxdepth 5 -name "index.html" -not -path "./node_modules/*" | head -1)
-            if [ -n "$HTML" ]; then
-              DIR=$(dirname "$HTML")
-              echo "Using $DIR"
-              cp -a "$DIR"/. dist/client/
-            else
-              echo "ERROR: No static build output found"
-              ls -la
-              ls -la .vercel/output/ 2>/dev/null || true
-              exit 1
-            fi
+            echo "ERROR: no static output"
+            ls -la
+            ls -la .vercel 2>/dev/null || true
+            ls -la .vercel/output 2>/dev/null || true
+            exit 1
           fi
-
-          if [ ! -f "dist/client/index.html" ]; then
-            echo "index.html missing — creating SPA shell"
-            MAIN_JS=$(ls dist/client/assets/index-*.js 2>/dev/null | head -1 | xargs -r basename)
-            MAIN_CSS=$(ls dist/client/assets/styles-*.css 2>/dev/null | head -1 | xargs -r basename)
-            cat > dist/client/index.html << HTML
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Elli</title>
-  ${MAIN_CSS:+<link rel="stylesheet" href="./assets/$MAIN_CSS" />}
-</head>
-<body>
-  <div id="root"></div>
-  ${MAIN_JS:+<script type="module" src="./assets/$MAIN_JS"></script>}
-</body>
-</html>
-HTML
+          if [ ! -f dist/client/index.html ]; then
+            echo "Creating index.html"
+            JS=$(ls dist/client/assets/index-*.js 2>/dev/null | head -1 | xargs -r basename)
+            CSS=$(ls dist/client/assets/styles-*.css 2>/dev/null | head -1 | xargs -r basename)
+            echo '<!DOCTYPE html><html lang="uz"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><title>Elli</title>' > dist/client/index.html
+            if [ -n "$CSS" ]; then echo "<link rel=\"stylesheet\" href=\"./assets/$CSS\"/>" >> dist/client/index.html; fi
+            echo '</head><body><div id="root"></div>' >> dist/client/index.html
+            if [ -n "$JS" ]; then echo "<script type=\"module\" src=\"./assets/$JS\"></script>" >> dist/client/index.html; fi
+            echo '</body></html>' >> dist/client/index.html
           fi
-
-          echo "=== dist/client contents ==="
-          ls -la dist/client/ | head -30
-          ls -la dist/client/assets/ 2>/dev/null | head -20 || true
+          echo "=== dist/client ==="
+          ls -la dist/client/ | head -25
+          test -f dist/client/index.html && echo "index.html OK" || (echo "index.html MISSING"; exit 1)
 
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '21'
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Capacitor & add Android platform
+      - name: Capacitor Android
         run: |
           npm install @capacitor/core @capacitor/cli @capacitor/android --no-audit --no-fund
           npx cap add android || true
           npx cap sync android
 
-      - name: Build debug APK
+      - name: Build APK
         working-directory: android
         run: |
           chmod +x gradlew
@@ -113,11 +90,3 @@ HTML
           name: Elli-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
-
-      - name: Summary
-        run: |
-          echo "### APK tayyor!" >> $GITHUB_STEP_SUMMARY
-          echo "Actions → Artifacts → Elli-debug-apk dan yuklab oling." >> $GITHUB_STEP_SUMMARY
-          ls -lh android/app/build/outputs/apk/debug/ || true
-
- 
