@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'Elli',
   webDir: 'dist/client',
   server: {
-    androidScheme: 'https',
+    url: 'https://myapp-rose-alpha.vercel.app',
+    cleartext: true,
   },
   android: {
     allowMixedContent: true,
