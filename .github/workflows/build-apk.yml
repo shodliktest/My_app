@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
@@ -29,39 +29,32 @@ jobs:
         run: |
           set -e
           npm run build
-          echo "=== Build done, searching output ==="
-          find . -maxdepth 5 -type d \( -name static -o -name client -o -name dist -o -name .output \) 2>/dev/null | head -20
-          find . -maxdepth 6 -name index.html -not -path './node_modules/*' 2>/dev/null | head -10
+          echo "=== Searching build output ==="
           mkdir -p dist/client
           if [ -d .vercel/output/static ]; then
-            echo "Copying .vercel/output/static"
+            echo "Using .vercel/output/static"
             cp -a .vercel/output/static/. dist/client/
           elif [ -d .output/public ]; then
-            echo "Copying .output/public"
+            echo "Using .output/public"
             cp -a .output/public/. dist/client/
           elif [ -f dist/index.html ]; then
-            echo "Copying dist"
             cp -a dist/. dist/client/ || true
           else
             echo "ERROR: no static output"
-            ls -la
-            ls -la .vercel 2>/dev/null || true
-            ls -la .vercel/output 2>/dev/null || true
+            ls -la .vercel/output 2>/dev/null || ls -la
             exit 1
           fi
           if [ ! -f dist/client/index.html ]; then
-            echo "Creating index.html"
             JS=$(ls dist/client/assets/index-*.js 2>/dev/null | head -1 | xargs -r basename)
             CSS=$(ls dist/client/assets/styles-*.css 2>/dev/null | head -1 | xargs -r basename)
             echo '<!DOCTYPE html><html lang="uz"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><title>Elli</title>' > dist/client/index.html
-            if [ -n "$CSS" ]; then echo "<link rel=\"stylesheet\" href=\"./assets/$CSS\"/>" >> dist/client/index.html; fi
+            [ -n "$CSS" ] && echo "<link rel=\"stylesheet\" href=\"./assets/$CSS\"/>" >> dist/client/index.html
             echo '</head><body><div id="root"></div>' >> dist/client/index.html
-            if [ -n "$JS" ]; then echo "<script type=\"module\" src=\"./assets/$JS\"></script>" >> dist/client/index.html; fi
+            [ -n "$JS" ] && echo "<script type=\"module\" src=\"./assets/$JS\"></script>" >> dist/client/index.html
             echo '</body></html>' >> dist/client/index.html
           fi
-          echo "=== dist/client ==="
-          ls -la dist/client/ | head -25
-          test -f dist/client/index.html && echo "index.html OK" || (echo "index.html MISSING"; exit 1)
+          ls -la dist/client/ | head -20
+          test -f dist/client/index.html
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -71,6 +64,8 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools platforms;android-34 build-tools;34.0.0
 
       - name: Capacitor Android
         run: |
