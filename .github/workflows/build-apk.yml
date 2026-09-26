@@ -1,7 +1,7 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch:   # Manual: Actions → Build Android APK → Run workflow
+  workflow_dispatch:
   push:
     branches: [main, master]
     paths-ignore:
@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
 
     steps:
       - name: Checkout
@@ -20,36 +20,41 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci --prefer-offline
+        run: npm install --no-audit --no-fund
 
       - name: Build web app
         env:
           VITE_AUTH_ENABLED: 'false'
         run: |
-          # Build; db:migrate skips when DATABASE_URL is unset
           npm run build
-          # Ensure Capacitor webDir exists (TanStack Start → dist/client)
+          echo "=== Build output search ==="
+          find . -maxdepth 4 \( -name "index.html" -o -type d -name "client" -o -type d -name "dist" -o -type d -name ".output" \) 2>/dev/null | head -40
           if [ -d "dist/client" ]; then
             echo "Found dist/client"
-          elif [ -d "dist" ]; then
+          elif [ -d "dist" ] && [ -f "dist/index.html" ]; then
             mkdir -p dist/client
-            cp -r dist/* dist/client/ 2>/dev/null || true
-            # if dist already is client-like, symlink
-            ls -la dist/
+            cp -a dist/. dist/client/ 2>/dev/null || true
           elif [ -d ".output/public" ]; then
             mkdir -p dist/client
-            cp -r .output/public/* dist/client/
+            cp -a .output/public/. dist/client/
           else
-            echo "Looking for build output..."
-            find . -maxdepth 3 -type d -name "client" -o -name "public" | head -20
-            ls -la
-            exit 1
+            HTML=$(find . -maxdepth 4 -name "index.html" -not -path "./node_modules/*" | head -1)
+            if [ -n "$HTML" ]; then
+              DIR=$(dirname "$HTML")
+              mkdir -p dist/client
+              cp -a "$DIR"/. dist/client/
+              echo "Copied from $DIR"
+            else
+              echo "No build output found"
+              ls -la
+              exit 1
+            fi
           fi
-          ls -la dist/client/ | head -20
+          ls -la dist/client/ | head -25
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -62,7 +67,7 @@ jobs:
 
       - name: Install Capacitor & add Android platform
         run: |
-          npm install @capacitor/core @capacitor/cli @capacitor/android --save
+          npm install @capacitor/core @capacitor/cli @capacitor/android --no-audit --no-fund
           npx cap add android || true
           npx cap sync android
 
@@ -81,6 +86,6 @@ jobs:
 
       - name: Summary
         run: |
-          echo "### ✅ APK tayyor!" >> $GITHUB_STEP_SUMMARY
-          echo "Actions → Artifacts → **Elli-debug-apk** dan yuklab oling." >> $GITHUB_STEP_SUMMARY
+          echo "### APK tayyor!" >> $GITHUB_STEP_SUMMARY
+          echo "Actions → Artifacts → Elli-debug-apk dan yuklab oling." >> $GITHUB_STEP_SUMMARY
           ls -lh android/app/build/outputs/apk/debug/ || true
