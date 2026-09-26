@@ -119,3 +119,5 @@ HTML
           echo "### APK tayyor!" >> $GITHUB_STEP_SUMMARY
           echo "Actions → Artifacts → Elli-debug-apk dan yuklab oling." >> $GITHUB_STEP_SUMMARY
           ls -lh android/app/build/outputs/apk/debug/ || true
+
+ 
