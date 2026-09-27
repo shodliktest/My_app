@@ -123,3 +123,10 @@ export function weightedSkillScore(skills: SkillScores) {
   }
   return weight ? Math.round(weighted / weight) : 0;
 }
+
+export function skillPct(skills: SkillScores, skill: Skill) {
+  const s = skills[skill];
+  if (!s || !s.total) return 0;
+  return Math.round((s.correct / s.total) * 100);
+}
+

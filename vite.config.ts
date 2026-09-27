@@ -168,7 +168,10 @@ export default defineConfig(({ command, isPreview }) => ({
     // PWA head + ?install=1 tutorial page; runs before Start/Nitro.
     grokPwaPlugin(),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      // Client-only shell for Capacitor offline APK (no Vercel required)
+      spa: { enabled: true },
+    }),
     ...(command === "build" || isPreview
       ? [
           nitro({

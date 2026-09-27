@@ -1,4 +1,4 @@
-name: Build Android APK (Offline)
+name: Build Android APK (Offline SPA)
 
 on:
   workflow_dispatch:
@@ -21,25 +21,33 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Build web (offline bundle)
+      - name: Build SPA shell
         env:
           VITE_AUTH_ENABLED: "false"
         run: |
           set -e
           npm run build
+          echo "=== search outputs ==="
+          find . -maxdepth 5 -type d \( -name static -o -name client -o -name dist -o -name .output -o -name public \) 2>/dev/null | head -40
+          find . -maxdepth 6 -name index.html -not -path './node_modules/*' 2>/dev/null | head -20
+
           mkdir -p dist/client
           if [ -d .vercel/output/static ]; then
             cp -a .vercel/output/static/. dist/client/
           elif [ -d .output/public ]; then
             cp -a .output/public/. dist/client/
+          elif [ -d dist/client ] && [ -f dist/client/index.html ]; then
+            true
+          elif [ -d dist ] && [ -f dist/index.html ]; then
+            cp -a dist/. dist/client/
           else
-            echo "ERROR: no static output"; find . -maxdepth 3 -type d; exit 1
+            echo "ERROR: no static shell"; ls -la; exit 1
           fi
-          # Offline assets always present in the APK
-          cp -f public/offline-no-internet.png dist/client/ || true
-          cp -f public/offline.html dist/client/ || true
-          cp -f public/shodlik-education-logo.png dist/client/ || true
-          # Force relative asset URLs for Capacitor
+
+          cp -f public/offline-no-internet.png dist/client/ 2>/dev/null || true
+          cp -f public/offline.html dist/client/ 2>/dev/null || true
+          cp -f public/shodlik-education-logo.png dist/client/ 2>/dev/null || true
+
           find dist/client -type f \( -name '*.html' -o -name '*.js' -o -name '*.css' \) -print0 2>/dev/null | \
             xargs -0 sed -i \
               -e 's|href="/assets/|href="./assets/|g' \
@@ -48,7 +56,6 @@ jobs:
               -e "s|'/assets/|'./assets/|g" \
               -e 's|href="/|href="./|g' \
               -e 's|src="/|src="./|g' || true
-          # Avoid double ././
           find dist/client -name '*.html' -print0 2>/dev/null | xargs -0 sed -i 's|\./\./|./|g' || true
 
           if [ ! -f dist/client/index.html ]; then
@@ -57,19 +64,18 @@ jobs:
             {
               echo '<!DOCTYPE html><html lang="uz"><head><meta charset="UTF-8"/>'
               echo '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>'
-              echo '<meta name="theme-color" content="#1B6B56"/>'
               echo '<title>Shodlik Education</title>'
               [ -n "$CSS" ] && echo "<link rel=\"stylesheet\" href=\"./assets/$CSS\"/>"
-              echo '</head><body style="margin:0;background:#FCFAf6">'
-              echo '<div id="root"></div>'
+              echo '</head><body style="margin:0;background:#FCFAf6"><div id="root"></div>'
               [ -n "$JS" ] && echo "<script type=\"module\" src=\"./assets/$JS\"></script>"
               echo '</body></html>'
             } > dist/client/index.html
           fi
-          echo "=== dist/client ==="
-          ls -la dist/client/ | head -25
+
+          echo "=== index.html head ==="
+          head -30 dist/client/index.html
+          ls -la dist/client/ | head -20
           test -f dist/client/index.html
-          test -f dist/client/offline-no-internet.png
 
       - uses: actions/setup-java@v4
         with:
@@ -80,10 +86,9 @@ jobs:
         with:
           packages: platform-tools platforms;android-34 build-tools;34.0.0
 
-      - name: Capacitor (local offline package)
+      - name: Capacitor offline package
         run: |
           npm install @capacitor/core @capacitor/cli @capacitor/android --no-audit --no-fund
-          # Ensure no remote server.url for offline APK
           npx cap add android || true
           npx cap sync android
 
