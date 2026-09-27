@@ -10,18 +10,54 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PhrasesRouteImport } from './routes/phrases'
+import { Route as GamesRouteImport } from './routes/games'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as MistakesRouteImport } from './routes/mistakes'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PlacementRouteImport } from './routes/placement'
+import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as ProgressRouteImport } from './routes/progress'
-import { Route as LearnSkillIdRouteImport } from './routes/learn.$skillId'
+import { Route as ReviewRouteImport } from './routes/review'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SpeakRouteImport } from './routes/speak'
+import { Route as TutorRouteImport } from './routes/tutor'
+import { Route as LearnLessonIdRouteImport } from './routes/learn.$lessonId'
+import { Route as PracticeSkillRouteImport } from './routes/practice.$skill'
+import { Route as VocabWordIdRouteImport } from './routes/vocab.$wordId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PhrasesRoute = PhrasesRouteImport.update({
-  id: '/phrases',
-  path: '/phrases',
+const GamesRoute = GamesRouteImport.update({
+  id: '/games',
+  path: '/games',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MistakesRoute = MistakesRouteImport.update({
+  id: '/mistakes',
+  path: '/mistakes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlacementRoute = PlacementRouteImport.update({
+  id: '/placement',
+  path: '/placement',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeRoute = PracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgressRoute = ProgressRouteImport.update({
@@ -29,44 +65,162 @@ const ProgressRoute = ProgressRouteImport.update({
   path: '/progress',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LearnSkillIdRoute = LearnSkillIdRouteImport.update({
-  id: '/learn/$skillId',
-  path: '/learn/$skillId',
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpeakRoute = SpeakRouteImport.update({
+  id: '/speak',
+  path: '/speak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TutorRoute = TutorRouteImport.update({
+  id: '/tutor',
+  path: '/tutor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnLessonIdRoute = LearnLessonIdRouteImport.update({
+  id: '/$lessonId',
+  path: '/$lessonId',
+  getParentRoute: () => LearnRoute,
+} as any)
+const PracticeSkillRoute = PracticeSkillRouteImport.update({
+  id: '/$skill',
+  path: '/$skill',
+  getParentRoute: () => PracticeRoute,
+} as any)
+const VocabWordIdRoute = VocabWordIdRouteImport.update({
+  id: '/vocab/$wordId',
+  path: '/vocab/$wordId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/phrases': typeof PhrasesRoute
+  '/games': typeof GamesRoute
+  '/learn': typeof LearnRouteWithChildren
+  '/mistakes': typeof MistakesRoute
+  '/onboarding': typeof OnboardingRoute
+  '/placement': typeof PlacementRoute
+  '/practice': typeof PracticeRouteWithChildren
   '/progress': typeof ProgressRoute
-  '/learn/$skillId': typeof LearnSkillIdRoute
+  '/review': typeof ReviewRoute
+  '/settings': typeof SettingsRoute
+  '/speak': typeof SpeakRoute
+  '/tutor': typeof TutorRoute
+  '/learn/$lessonId': typeof LearnLessonIdRoute
+  '/practice/$skill': typeof PracticeSkillRoute
+  '/vocab/$wordId': typeof VocabWordIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/phrases': typeof PhrasesRoute
+  '/games': typeof GamesRoute
+  '/learn': typeof LearnRouteWithChildren
+  '/mistakes': typeof MistakesRoute
+  '/onboarding': typeof OnboardingRoute
+  '/placement': typeof PlacementRoute
+  '/practice': typeof PracticeRouteWithChildren
   '/progress': typeof ProgressRoute
-  '/learn/$skillId': typeof LearnSkillIdRoute
+  '/review': typeof ReviewRoute
+  '/settings': typeof SettingsRoute
+  '/speak': typeof SpeakRoute
+  '/tutor': typeof TutorRoute
+  '/learn/$lessonId': typeof LearnLessonIdRoute
+  '/practice/$skill': typeof PracticeSkillRoute
+  '/vocab/$wordId': typeof VocabWordIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/phrases': typeof PhrasesRoute
+  '/games': typeof GamesRoute
+  '/learn': typeof LearnRouteWithChildren
+  '/mistakes': typeof MistakesRoute
+  '/onboarding': typeof OnboardingRoute
+  '/placement': typeof PlacementRoute
+  '/practice': typeof PracticeRouteWithChildren
   '/progress': typeof ProgressRoute
-  '/learn/$skillId': typeof LearnSkillIdRoute
+  '/review': typeof ReviewRoute
+  '/settings': typeof SettingsRoute
+  '/speak': typeof SpeakRoute
+  '/tutor': typeof TutorRoute
+  '/learn/$lessonId': typeof LearnLessonIdRoute
+  '/practice/$skill': typeof PracticeSkillRoute
+  '/vocab/$wordId': typeof VocabWordIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/phrases' | '/progress' | '/learn/$skillId'
+  fullPaths:
+    | '/'
+    | '/games'
+    | '/learn'
+    | '/mistakes'
+    | '/onboarding'
+    | '/placement'
+    | '/practice'
+    | '/progress'
+    | '/review'
+    | '/settings'
+    | '/speak'
+    | '/learn/$lessonId'
+    | '/practice/$skill'
+    | '/vocab/$wordId'
+    | '/tutor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/phrases' | '/progress' | '/learn/$skillId'
-  id: '__root__' | '/' | '/phrases' | '/progress' | '/learn/$skillId'
+  to:
+    | '/'
+    | '/games'
+    | '/learn'
+    | '/mistakes'
+    | '/onboarding'
+    | '/placement'
+    | '/practice'
+    | '/progress'
+    | '/review'
+    | '/settings'
+    | '/speak'
+    | '/learn/$lessonId'
+    | '/practice/$skill'
+    | '/vocab/$wordId'
+    | '/tutor'
+  id:
+    | '__root__'
+    | '/'
+    | '/games'
+    | '/learn'
+    | '/mistakes'
+    | '/onboarding'
+    | '/placement'
+    | '/practice'
+    | '/progress'
+    | '/review'
+    | '/settings'
+    | '/speak'
+    | '/learn/$lessonId'
+    | '/practice/$skill'
+    | '/vocab/$wordId'
+    | '/tutor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PhrasesRoute: typeof PhrasesRoute
+  GamesRoute: typeof GamesRoute
+  LearnRoute: typeof LearnRouteWithChildren
+  MistakesRoute: typeof MistakesRoute
+  OnboardingRoute: typeof OnboardingRoute
+  PlacementRoute: typeof PlacementRoute
+  PracticeRoute: typeof PracticeRouteWithChildren
   ProgressRoute: typeof ProgressRoute
-  LearnSkillIdRoute: typeof LearnSkillIdRoute
+  ReviewRoute: typeof ReviewRoute
+  SettingsRoute: typeof SettingsRoute
+  SpeakRoute: typeof SpeakRoute
+  TutorRoute: typeof TutorRoute
+  VocabWordIdRoute: typeof VocabWordIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -78,11 +232,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/phrases': {
-      id: '/phrases'
-      path: '/phrases'
-      fullPath: '/phrases'
-      preLoaderRoute: typeof PhrasesRouteImport
+    '/games': {
+      id: '/games'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof GamesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mistakes': {
+      id: '/mistakes'
+      path: '/mistakes'
+      fullPath: '/mistakes'
+      preLoaderRoute: typeof MistakesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/placement': {
+      id: '/placement'
+      path: '/placement'
+      fullPath: '/placement'
+      preLoaderRoute: typeof PlacementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice': {
+      id: '/practice'
+      path: '/practice'
+      fullPath: '/practice'
+      preLoaderRoute: typeof PracticeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/progress': {
@@ -92,21 +281,94 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgressRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/learn/$skillId': {
-      id: '/learn/$skillId'
-      path: '/learn/$skillId'
-      fullPath: '/learn/$skillId'
-      preLoaderRoute: typeof LearnSkillIdRouteImport
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/speak': {
+      id: '/speak'
+      path: '/speak'
+      fullPath: '/speak'
+      preLoaderRoute: typeof SpeakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/$lessonId': {
+      id: '/learn/$lessonId'
+      path: '/$lessonId'
+      fullPath: '/learn/$lessonId'
+      preLoaderRoute: typeof LearnLessonIdRouteImport
+      parentRoute: typeof LearnRoute
+    }
+    '/practice/$skill': {
+      id: '/practice/$skill'
+      path: '/$skill'
+      fullPath: '/practice/$skill'
+      preLoaderRoute: typeof PracticeSkillRouteImport
+      parentRoute: typeof PracticeRoute
+    }
+    '/vocab/$wordId': {
+      id: '/vocab/$wordId'
+      path: '/vocab/$wordId'
+      fullPath: '/vocab/$wordId'
+      preLoaderRoute: typeof VocabWordIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tutor': {
+      id: '/tutor'
+      path: '/tutor'
+      fullPath: '/tutor'
+      preLoaderRoute: typeof TutorRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
+interface LearnRouteChildren {
+  LearnLessonIdRoute: typeof LearnLessonIdRoute
+}
+
+const LearnRouteChildren: LearnRouteChildren = {
+  LearnLessonIdRoute: LearnLessonIdRoute,
+}
+
+const LearnRouteWithChildren = LearnRoute._addFileChildren(LearnRouteChildren)
+
+interface PracticeRouteChildren {
+  PracticeSkillRoute: typeof PracticeSkillRoute
+}
+
+const PracticeRouteChildren: PracticeRouteChildren = {
+  PracticeSkillRoute: PracticeSkillRoute,
+}
+
+const PracticeRouteWithChildren = PracticeRoute._addFileChildren(
+  PracticeRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PhrasesRoute: PhrasesRoute,
+  GamesRoute: GamesRoute,
+  LearnRoute: LearnRouteWithChildren,
+  MistakesRoute: MistakesRoute,
+  OnboardingRoute: OnboardingRoute,
+  PlacementRoute: PlacementRoute,
+  PracticeRoute: PracticeRouteWithChildren,
   ProgressRoute: ProgressRoute,
-  LearnSkillIdRoute: LearnSkillIdRoute,
+  ReviewRoute: ReviewRoute,
+  SettingsRoute: SettingsRoute,
+  SpeakRoute: SpeakRoute,
+  TutorRoute: TutorRoute,
+  VocabWordIdRoute: VocabWordIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

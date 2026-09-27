@@ -1,57 +1,25 @@
-# Elli — Ingliz tili o'rganish ilovasi
+# Shodlik Education — Offline-first
 
-Vite + React + TanStack Start asosida yasalgan.
+Asosiy o'qish (darslar, mashqlar, lug'at, progress) **internet siz** ishlaydi.
+Progress telefon xotirasida saqlanadi (Local-First).
 
-## 📱 APK ni GitHub Actions orqali olish (Android Studio kerak emas)
+## Offline ekran
+- Internet yo'q bo'lsa: yuqorida yumshoq banner (ilova bloklanmaydi)
+- `public/offline-no-internet.png` — maxsus holatlar uchun
 
-### 1-qadam: GitHub ga yuklash
-
-1. [github.com](https://github.com) da yangi repository yarating (masalan `elli-app`)
-2. Kompyuteringizda yoki GitHub web orqali fayllarni yuklang:
-
+## Vercel (web)
 ```bash
-git init
-git add .
-git commit -m "Elli app"
-git branch -M main
-git remote add origin https://github.com/SIZNING_USERNAME/elli-app.git
-git push -u origin main
+npm install
+npm run build
 ```
 
-### 2-qadam: APK yasash
+## Offline APK (GitHub Actions)
+1. Ushbu repodagi **Actions → Build Android APK → Run workflow**
+2. Artifact: **Shodlik-Education-apk**
+3. `server.url` yo'q — APK ichidagi fayllardan ishlaydi (offline)
 
-1. GitHub repository sahifasida **Actions** bo‘limiga kiring
-2. Chapda **Build Android APK** ni tanlang
-3. **Run workflow** tugmasini bosing
-4. 5–10 daqiqa kuting
-
-### 3-qadam: Yuklab olish
-
-1. Workflow tugagach, pastga tushing
-2. **Artifacts** bo‘limida **Elli-debug-apk** ni ko‘rasiz
-3. Uni bosib **app-debug.apk** ni yuklab oling
-4. Telefoningizga o‘tkazing va o‘rnating (noma’lum manbalarga ruxsat bering)
-
-> Har safar `main` ga push qilsangiz ham avtomatik yangi APK yasaydi.
-
----
-
-## Lokal ishga tushirish (ixtiyoriy)
-
+## Lokal
 ```bash
 npm install
 npm run dev
-```
-
-Brauzer: http://localhost:8080
-
-## Capacitor (o‘zingiz Android Studio bilan)
-
-```bash
-npm install
-npm install @capacitor/core @capacitor/cli @capacitor/android
-npm run build:mobile
-npx cap add android
-npx cap sync
-npx cap open android
 ```

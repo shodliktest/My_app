@@ -1,18 +1,31 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
-  return (
+export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+  ({ className, ...props }, ref) => (
     <input
-      type={type}
-      data-slot="input"
+      ref={ref}
       className={cn(
-        "flex h-12 w-full rounded-lg bg-surface px-3.5 text-base text-fg shadow-[var(--shadow-border)] outline-none transition-[box-shadow] duration-150 placeholder:text-subtle focus-visible:ring-2 focus-visible:ring-ring/35 disabled:opacity-50",
+        "flex h-11 w-full rounded-md border border-border-strong bg-bg-elevated px-3 text-base text-fg placeholder:text-subtle outline-none transition-[box-shadow] duration-150 focus-visible:ring-2 focus-visible:ring-primary/35",
         className,
       )}
       {...props}
     />
-  );
-}
+  ),
+);
+Input.displayName = "Input";
 
-export { Input };
+export const Textarea = React.forwardRef<
+  HTMLTextAreaElement,
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>
+>(({ className, ...props }, ref) => (
+  <textarea
+    ref={ref}
+    className={cn(
+      "flex min-h-32 w-full rounded-lg border border-border-strong bg-bg-elevated px-3 py-3 text-base text-fg placeholder:text-subtle outline-none transition-[box-shadow] duration-150 focus-visible:ring-2 focus-visible:ring-primary/35",
+      className,
+    )}
+    {...props}
+  />
+));
+Textarea.displayName = "Textarea";

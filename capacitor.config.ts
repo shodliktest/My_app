@@ -1,12 +1,15 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from "@capacitor/cli";
 
+/**
+ * Offline-first APK: serves bundled web assets from the device.
+ * Do NOT set server.url unless you intentionally want an online wrapper.
+ */
 const config: CapacitorConfig = {
-  appId: 'com.elli.app',
-  appName: 'Elli',
-  webDir: 'dist/client',
+  appId: "com.shodlik.education",
+  appName: "Shodlik Education",
+  webDir: "dist/client",
   server: {
-    url: 'https://myapp-rose-alpha.vercel.app',
-    cleartext: true,
+    androidScheme: "https",
   },
   android: {
     allowMixedContent: true,
