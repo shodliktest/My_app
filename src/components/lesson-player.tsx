@@ -317,7 +317,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
             <div className="mt-4 rounded-xl bg-bg-elevated p-4 shadow-[var(--shadow-border)]">
               {(() => {
                 const line = lesson.listening.script[dictationIndex % Math.max(1, lesson.listening.script.length)];
-                const item = line ? makeDictation(line.en, lesson.level);
+                const item = line ? makeDictation(line.en, lesson.level) : null;
                 if (!line || !item) return null;
                 return (
                   <>
