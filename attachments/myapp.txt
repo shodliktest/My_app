@@ -1,0 +1,3213 @@
+Dastur Nomi SHodlik  Education App.
+vA Logo ham shunga mos boʻlsin. 
+
+Worked for 8s
+
+Ha. Siz aytayotgan narsa oddiy “English learning app” emas. Buni men 0 → A1 → A2 → B1 → B2 → C1 darajalarini bosqichma-bosqich olib boradigan, AI o‘qituvchi + kurs + mashq platformasi + spaced-repetition tizimi sifatida loyihalagan bo‘lardim.
+
+CEFR ham tilni faqat grammar bilan emas, listening, reading, spoken/written production, interaction, mediation va real kommunikativ vazifalar orqali tavsiflaydi. Shuning uchun bizning tizim ham aynan shu prinsipda quriladi. 
+
+Quyida sizga agentga berib APK/web app qurdira oladigan darajadagi to‘liq konsepsiyani beraman.
+
+
+---
+
+🇬🇧 ENGLISH MASTER
+
+0 → C1 AI English Teacher
+
+Asosiy maqsad
+
+Foydalanuvchini:
+
+0 → A1 → A2 → B1 → B1+ → B2 → B2+ → C1
+
+bosqichlaridan olib o‘tish.
+
+Har bir bosqichda:
+
+> Learn → Understand → Practice → Recall → Use → Speak → Write → Review → Test → Fix mistakes → Repeat
+
+
+
+sikli ishlaydi.
+
+Ya'ni foydalanuvchi:
+
+o‘qiydi → tushunadi → mashq qiladi → eslaydi → gapda ishlatadi → xato qiladi → xatosini tushunadi → qayta ishlaydi → avtomatiklashtiradi.
+
+
+---
+
+1. ENG MUHIM PRINSIP
+
+Ilova foydalanuvchiga:
+
+> ❌ “Bugun 20 ta so‘z yodla”
+
+
+
+demaydi.
+
+Buning o‘rniga:
+
+> Bugungi mavzu: DAILY ROUTINES
+
+
+
+va shu mavzu ichida:
+
+Grammar
+
+Present Simple
+
+Vocabulary
+
+wake up, get dressed, have breakfast...
+
+Active phrases
+
+I usually wake up at 7.
+
+Listening
+
+2–3 daqiqalik audio
+
+Reading
+
+150 so‘zli matn
+
+Speaking
+
+“Describe your morning routine.”
+
+Writing
+
+“Write 80 words about your daily routine.”
+
+Games
+
+word ordering / matching / error correction
+
+Review
+
+old vocabulary
+
+Test
+
+grammar + vocabulary + listening
+
+bo‘ladi.
+
+Shunda barcha ko‘nikmalar bir-biriga bog‘lanadi.
+
+
+---
+
+2. KUNLIK DARS DVIGATELI
+
+Sizning oldingi 2 soatlik o‘qish maqsadingizga moslab men bitta kunni taxminan shunday qurardim:
+
+Vaqt	Faoliyat
+
+10 min	Spaced repetition
+15 min	Vocabulary
+20 min	Grammar
+15 min	Grammar exercises
+20 min	Listening
+10 min	Shadowing
+15 min	Reading
+10 min	Speaking
+10 min	Writing
+5 min	Daily test
+
+
+Jami: ~130 min
+
+Lekin app foydalanuvchini majburlamaydi.
+
+Masalan:
+
+Quick Day — 30 min
+
+Normal Day — 60 min
+
+Full Day — 120 min
+
+
+---
+
+3. HAR BIR KUNNING STRUKTURASI
+
+Har bir lesson JSON/database'da taxminan shunday saqlanadi:
+
+DAY 001
+
+Level: A1
+Topic: Introductions
+
+Grammar:
+Verb to be
+
+Vocabulary:
+name
+age
+country
+city
+student
+teacher
+
+Phrases:
+My name is...
+I am from...
+I live in...
+Nice to meet you.
+
+Listening:
+A short dialogue
+
+Reading:
+Introducing yourself
+
+Speaking:
+Introduce yourself
+
+Writing:
+Write 5 sentences about yourself
+
+Exercises:
+MCQ
+Fill gaps
+Word order
+Error correction
+Translation
+Typing
+
+Review:
+Day 1 vocabulary
+
+Test:
+10 questions
+
+
+---
+
+4. GRAMMAR TIZIMI
+
+Grammar shunchaki qoidalar ro‘yxati bo‘lmaydi.
+
+Har bir grammar topic:
+
+1. Meaning
+
+Bu nima?
+
+2. Form
+
+Qanday tuziladi?
+
+3. Why?
+
+Nega aynan shu shakl ishlatiladi?
+
+4. Examples
+
+Misollar.
+
+5. Negative
+
+Inkor.
+
+6. Question
+
+Savol.
+
+7. Common mistakes
+
+Eng ko‘p uchraydigan xatolar.
+
+8. Contrast
+
+Masalan:
+
+Present Simple vs Present Continuous
+
+9. Practice
+
+Mashqlar.
+
+10. Production
+
+O‘quvchi o‘zi gap tuzadi.
+
+
+---
+
+5. GRAMMAR MASHQLARI
+
+Kamida quyidagi 15 tur bo‘lsin.
+
+1. Multiple choice
+
+She ___ to school every day.
+
+A) go
+B) goes *
+C) going
+D) went
+
+
+---
+
+2. Fill in the blank
+
+She ___ to school every day.
+
+
+---
+
+3. Word ordering
+
+every / goes / she / school / day
+
+↓
+
+She goes to school every day.
+
+
+---
+
+4. Error correction
+
+She go to school every day.
+
+↓
+
+She goes to school every day.
+
+Keyin:
+
+> ❌ go
+✅ goes
+
+
+
+Why?
+
+Because she/he/it + verb-s in Present Simple.
+
+
+---
+
+5. Translation
+
+Uzbek:
+
+> U har kuni maktabga boradi.
+
+
+
+English:
+
+> She goes to school every day.
+
+
+
+
+---
+
+6. Transformation
+
+He plays football.
+
+Negative:
+He doesn't play football.
+
+
+---
+
+7. Question formation
+
+you / where / live?
+
+↓
+
+Where do you live?
+
+
+---
+
+8. Choose the correct tense
+
+
+---
+
+9. Find the mistake
+
+
+---
+
+10. Rewrite
+
+
+---
+
+11. Sentence completion
+
+
+---
+
+12. Dictation
+
+Audio → typing.
+
+
+---
+
+13. Listening gap-fill
+
+Audio:
+
+> I ___ to work every day.
+
+
+
+
+---
+
+14. Speaking prompt
+
+> Tell me about your daily routine.
+
+
+
+
+---
+
+15. AI correction
+
+Foydalanuvchi:
+
+> “I am go to school yesterday.”
+
+
+
+AI:
+
+> ❌ I am go
+❌ yesterday + present form
+
+
+
+Correct:
+
+> ✅ I went to school yesterday.
+
+
+
+Explanation:
+
+> “Yesterday” refers to the past, so use Past Simple.
+
+
+
+
+---
+
+6. VOCABULARY SISTEMASI
+
+Bu ilovaning eng kuchli qismlaridan biri bo‘lishi kerak.
+
+Faqat:
+
+> apple — olma
+
+
+
+emas.
+
+Har bir word:
+
+WORD:
+decision
+
+Uzbek:
+qaror
+
+Part of speech:
+noun
+
+Pronunciation:
+ /dɪˈsɪʒən/
+
+Definition:
+a choice that you make after thinking
+
+Example:
+I made an important decision.
+
+Collocations:
+make a decision
+final decision
+difficult decision
+
+Synonyms:
+choice
+
+Antonyms:
+—
+
+Related:
+decide
+decisive
+indecisive
+
+
+---
+
+7. WORD FAMILY
+
+Masalan:
+
+decide
+
+Verb
+
+decide
+
+decision
+
+Noun
+
+decision
+
+decisive
+
+Adjective
+
+decisive
+
+decisively
+
+Adverb
+
+decisively
+
+undecided
+
+Adjective
+
+undecided
+
+Shunday qilib vocabulary chuqur o‘rganiladi.
+
+
+---
+
+8. ACTIVE VOCABULARY
+
+Eng muhim qism.
+
+O‘quvchi:
+
+> understand
+
+
+
+so‘zini bilishi mumkin.
+
+Ammo gapirishda ishlatolmasligi mumkin.
+
+Shuning uchun app:
+
+Passive
+
+“I understand this word.”
+
+Active
+
+“I can use this word in a sentence.”
+
+farqini kuzatadi.
+
+
+---
+
+9. PHRASE / CHUNK SYSTEM
+
+Alohida so‘zlardan ko‘ra ko‘p hollarda tayyor birikmalar o‘rgatiladi.
+
+Masalan:
+
+make a decision
+take a break
+have a look
+get ready
+be interested in
+look forward to
+
+Har bir phrase:
+
+Meaning
+
+Translation
+
+Pronunciation
+
+Example
+
+Mini dialogue
+
+Speaking task
+
+bilan beriladi.
+
+
+---
+
+10. FLASHCARD SYSTEM
+
+Flashcard juda kuchli bo‘lishi kerak.
+
+Front
+
+🖼️ rasm
+
+> What is this?
+
+
+
+Back
+
+> ladder
+
+
+
+> narvon
+
+
+
+> /ˈlædər/
+
+
+
+Example:
+
+> He climbed the ladder.
+
+
+
+
+---
+
+Flashcard turlari
+
+Image → Word
+
+🖼️ → ?
+
+Word → Meaning
+
+ladder → ?
+
+Uzbek → English
+
+narvon → ?
+
+English → Uzbek
+
+ladder → ?
+
+Audio → Word
+
+🔊 → ?
+
+Sentence → Missing word
+
+> He climbed the ___.
+
+
+
+Picture → Sentence
+
+🖼️
+
+> Make a sentence.
+
+
+
+Speaking card
+
+> Use ladder in a sentence.
+
+
+
+Bu active recallni kuchaytiradi.
+
+
+---
+
+11. SPACED REPETITION
+
+Siz aytgan “96 soat” g‘oyasini ham tizimga qo‘shish mumkin.
+
+Lekin men buni qat'iy “96 soatda hamma so‘z yod bo‘ladi” deb emas, interval asosidagi review engine sifatida ishlatardim.
+
+Masalan:
+
+New
+↓
+10 min
+↓
+1 day
+↓
+3 days
+↓
+7 days
+↓
+14 days
+↓
+30 days
+↓
+60 days
+↓
+90 days
+
+Agar xato qilsa:
+
+Back to shorter interval
+
+Agar 3–4 marta to‘g‘ri javob bersa:
+
+Longer interval
+
+
+---
+
+12. FRAYER MODEL
+
+Har bir muhim vocabulary uchun:
+
+WORD
+
+efficient
+
+Definition
+
+working well without wasting time
+
+Characteristics
+
+productive
+effective
+saves time
+
+Examples
+
+> This is an efficient method.
+
+
+
+Non-examples
+
+> This method wastes a lot of time.
+
+
+
+Uzbek
+
+samarali
+
+Bu ayniqsa B1–C1 bosqichlarida juda foydali.
+
+
+---
+
+13. LISTENING SISTEMASI
+
+Listening 4 bosqichli bo‘ladi.
+
+Level 1
+
+Audio + transcript.
+
+Level 2
+
+Audio + partial transcript.
+
+Level 3
+
+Audio only.
+
+Level 4
+
+Audio → answer questions.
+
+
+---
+
+Keyin:
+
+Shadowing
+
+Audio:
+
+> I usually get up at seven.
+
+
+
+User audio bilan birga aytadi.
+
+App:
+
+pronunciation
+
+missing words
+
+speed
+
+fluency
+
+
+bo‘yicha feedback beradi.
+
+
+---
+
+14. LISTENING MATERIALLARI
+
+Har level uchun mavzular:
+
+A1
+
+greetings
+
+family
+
+numbers
+
+home
+
+food
+
+daily routine
+
+shopping
+
+weather
+
+school
+
+work
+
+
+A2
+
+travel
+
+hobbies
+
+health
+
+technology
+
+relationships
+
+city
+
+transportation
+
+jobs
+
+
+B1
+
+education
+
+environment
+
+social media
+
+technology
+
+culture
+
+business
+
+news
+
+psychology
+
+lifestyle
+
+
+B2
+
+artificial intelligence
+
+economics
+
+science
+
+politics as neutral informational content
+
+climate
+
+business
+
+education
+
+globalization
+
+media
+
+
+C1
+
+academic discussions
+
+lectures
+
+interviews
+
+debates
+
+documentaries
+
+professional presentations
+
+complex articles
+
+
+CEFR yuqori darajalarda murakkab mavzularni tushuntirish, nuqtalarni rivojlantirish va murakkab matnlarni qayta ishlash kabi ko‘nikmalarni ham qamrab oladi. 
+
+
+---
+
+15. READING ENGINE
+
+Reading ham bir xil bo‘lmaydi.
+
+A1
+
+50–100 words
+
+A2
+
+100–200
+
+B1
+
+250–400
+
+B2
+
+400–700
+
+C1
+
+700–1200+
+
+
+---
+
+Har bir reading:
+
+Step 1
+
+Preview
+
+Step 2
+
+Read
+
+Step 3
+
+Vocabulary
+
+Step 4
+
+Questions
+
+Step 5
+
+Inference
+
+Step 6
+
+Summary
+
+Step 7
+
+Speaking
+
+Step 8
+
+Writing
+
+Masalan:
+
+> Read the article.
+
+
+
+Keyin:
+
+> What is the main idea?
+
+
+
+> Why did the author mention X?
+
+
+
+> What can we infer?
+
+
+
+C1 darajasida oddiy “matnni o‘qib, tarjima qil” yetarli emas.
+
+
+---
+
+16. WRITING SYSTEM
+
+A1
+
+5–10 sentences
+
+A2
+
+short paragraph
+
+B1
+
+email / story / opinion
+
+B2
+
+essay / report / article
+
+C1
+
+argumentative essay / report / formal writing / synthesis
+
+AI:
+
+Grammar
+Vocabulary
+Structure
+Coherence
+Cohesion
+Task achievement
+Naturalness
+Register
+
+bo‘yicha feedback beradi.
+
+
+---
+
+17. WRITING'DA ENG MUHIM FUNKSIYA
+
+AI shunchaki:
+
+> ❌ Wrong
+
+
+
+demasligi kerak.
+
+Balki:
+
+> Your sentence:
+
+“I am agree with this idea.”
+
+Correct:
+
+“I agree with this idea.”
+
+Why?
+
+Agree is a verb, so we don't use “am” before it.
+
+
+
+Keyin:
+
+Retry
+
+> Write a new sentence using agree.
+
+
+
+
+---
+
+18. SPEAKING AI TEACHER
+
+Bu appning eng kuchli funksiyalaridan biri bo‘ladi.
+
+AI:
+
+> Tell me about your family.
+
+
+
+User gapiradi.
+
+AI:
+
+Grammar
+
+82%
+
+Vocabulary
+
+76%
+
+Fluency
+
+78%
+
+Pronunciation
+
+...
+
+Lekin foydalanuvchini faqat score bilan baholamasdan:
+
+3 ta asosiy xatosini chiqaradi.
+
+Masalan:
+
+> 1. “He go” → “He goes”
+
+
+2. “I am agree” → “I agree”
+
+
+3. “Yesterday I go” → “Yesterday I went”
+
+
+
+
+
+Keyin shu xatolardan yangi mashqlar yaratadi.
+
+
+---
+
+19. ERROR BANK
+
+Bu juda muhim.
+
+Har foydalanuvchining:
+
+My Mistakes
+
+bo‘limi bo‘ladi.
+
+Masalan:
+
+Past Simple
+7 mistakes
+
+Articles
+4 mistakes
+
+Prepositions
+8 mistakes
+
+Word order
+5 mistakes
+
+AI keyingi darslarda aynan shu xatolarni qayta ishlatadi.
+
+Shuning uchun:
+
+Course + Personal Error Correction
+
+birga ishlaydi.
+
+
+---
+
+20. “AI TEACHER MEMORY”
+
+AI foydalanuvchi haqida:
+
+Current level: B1
+
+Weak grammar:
+Articles
+Present Perfect
+Conditionals
+
+Weak vocabulary:
+Work
+Technology
+
+Listening:
+B1
+
+Speaking:
+B1-
+
+Writing:
+A2+/B1
+
+Known vocabulary:
+3,421
+
+Active vocabulary:
+1,870
+
+Repeated mistakes:
+...
+
+kabi o‘quv progressini saqlaydi.
+
+
+---
+
+21. ADAPTIVE LEARNING
+
+Masalan:
+
+Foydalanuvchi:
+
+Present Perfect'da 90%.
+
+Past Perfect'da 95%.
+
+Articles'da 48%.
+
+App:
+
+> Bugungi lessonning 20% qismini Articles reviewga o‘zgartiradi.
+
+
+
+Ya'ni:
+
+hamma foydalanuvchiga bir xil dars emas.
+
+
+---
+
+22. DAILY MISSION
+
+Har kuni:
+
+🎯 Today's Mission
+
+Grammar       ███████░░░ 70%
+Vocabulary    █████████░ 90%
+Listening     ██████░░░░ 60%
+Reading       ██████████ 100%
+Speaking      ████░░░░░░ 40%
+Writing       ███████░░░ 70%
+
+
+---
+
+23. GAMIFICATION
+
+Lekin bolalarcha emas.
+
+XP
+
+Grammar +10
+
+Listening +20
+
+Speaking +30
+
+Writing +30
+
+Review +10
+
+
+---
+
+Streak
+
+🔥 7 days
+
+🔥 30 days
+
+🔥 100 days
+
+
+---
+
+Achievements
+
+🏆 First 100 words
+
+🏆 First conversation
+
+🏆 7-day streak
+
+🏆 A1 completed
+
+🏆 A2 completed
+
+🏆 B1 completed
+
+🏆 B2 completed
+
+🏆 C1 completed
+
+
+---
+
+24. MINI GAMES
+
+Kamida:
+
+Word Match
+
+Word ↔ meaning
+
+Memory Cards
+
+Sentence Builder
+
+So‘zlarni joylashtirish.
+
+Grammar Race
+
+Listening Challenge
+
+Odd One Out
+
+Find the Mistake
+
+Translation Challenge
+
+Picture Description
+
+Word Family
+
+Collocation Builder
+
+Spelling Challenge
+
+Dictation
+
+Speed Vocabulary
+
+
+---
+
+25. RASMLI O‘RGANISH
+
+Vocabulary uchun:
+
+🖼️ image
+
+↓
+
+English word
+
+↓
+
+pronunciation
+
+↓
+
+meaning
+
+↓
+
+example
+
+↓
+
+phrase
+
+↓
+
+speaking
+
+bo‘ladi.
+
+Siz aytgan Pinterestni kontent ilhomlantiruvchi manba sifatida ishlatish mumkin; lekin app ichiga rasmlarni avtomatik ko‘chirib joylashda copyright/licensing masalasini hisobga olish kerak. Shuning uchun ishlab chiqarish tizimida litsenziyalangan/public-domain/own-generated images uchun alohida source/license metadata saqlagan ma'qul.
+
+[Pinterest](https://www.pinterest.com/?utm_source=chatgpt.com)
+
+
+---
+
+26. VIDEO SYSTEM
+
+Har bir topic uchun video:
+
+Video
+↓
+Before watching
+↓
+Watch
+↓
+Vocabulary
+↓
+Questions
+↓
+Transcript
+↓
+Shadowing
+↓
+Summary
+
+Video tezligi:
+
+0.5x / 0.75x / 1x / 1.25x / 1.5x
+
+Transcript:
+
+> English
+
+
+
+va
+
+> Uzbek explanation
+
+
+
+rejimida.
+
+
+---
+
+27. 0 → C1 KURS STRUKTURASI
+
+Men kursni taxminan quyidagicha tashkil qilardim:
+
+PRE-A1 / 0
+
+30–45 kun
+
+alphabet
+
+sounds
+
+pronunciation
+
+basic words
+
+numbers
+
+greetings
+
+be
+
+pronouns
+
+basic sentence structure
+
+basic questions
+
+
+
+---
+
+A1
+
+~60–75 kun
+
+Grammar
+
+be
+
+have
+
+possessives
+
+articles
+
+plural
+
+Present Simple
+
+Present Continuous
+
+can
+
+there is/are
+
+imperatives
+
+basic prepositions
+
+Past Simple introduction
+
+going to
+
+
+Vocabulary
+
+~800–1000 core words/phrases.
+
+
+---
+
+A2
+
+~90 kun
+
+Grammar:
+
+Past Simple
+
+Past Continuous
+
+Present Perfect
+
+future forms
+
+comparatives
+
+superlatives
+
+modals
+
+first conditional
+
+infinitive/gerund basics
+
+relative clauses
+
+passive basics
+
+reported speech basics
+
+
+Vocabulary:
+
+~1500–2500 additional active items/phrases.
+
+
+---
+
+B1
+
+~120 kun
+
+Grammar:
+
+all major tenses
+
+Present Perfect Continuous
+
+Past Perfect
+
+future continuous
+
+conditionals
+
+passive
+
+reported speech
+
+relative clauses
+
+modal deduction
+
+gerunds/infinitives
+
+wish
+
+used to
+
+question tags
+
+indirect questions
+
+
+Bu qism siz ilgari o‘rganishni xohlagan mavzularni ham qamrab oladi.
+
+
+---
+
+B2
+
+~150 kun
+
+Bu yerda grammar emas, accuracy + complexity + communication markazga chiqadi.
+
+Grammar
+
+advanced conditionals
+
+mixed conditionals
+
+inversion
+
+advanced passive
+
+participle clauses
+
+cleft sentences
+
+advanced reported speech
+
+modal nuance
+
+advanced relative structures
+
+complex noun phrases
+
+discourse markers
+
+
+Vocabulary
+
+collocations
+
+idioms
+
+phrasal verbs
+
+academic vocabulary
+
+formal/informal register
+
+word formation
+
+synonyms/nuance
+
+
+
+---
+
+C1
+
+~150–180 kun
+
+Bu bosqich:
+
+> “Grammar bilaman”
+
+
+
+emas.
+
+Balki:
+
+> “I can use English precisely, naturally and flexibly.”
+
+
+
+darajasi.
+
+C1 uchun:
+
+academic English
+
+professional English
+
+advanced listening
+
+long-form reading
+
+argumentation
+
+synthesis
+
+paraphrasing
+
+nuance
+
+register
+
+idiomatic language
+
+advanced writing
+
+spontaneous speaking
+
+
+CEFR C1 tavsiflarida murakkab mavzular bo‘yicha batafsil nutq, sub-mavzularni rivojlantirish va fikrlarni izchil yakunlash kabi ko‘nikmalar ko‘zda tutiladi. 
+
+
+---
+
+28. HAR HAFTA
+
+Har 7-kun:
+
+REVIEW DAY
+
+Yangi grammar yo‘q.
+
+Balki:
+
+Grammar review
+
+Vocabulary review
+
+Listening review
+
+Reading
+
+Speaking
+
+Writing
+
+Error correction
+
+Weekly test
+
+
+---
+
+29. HAR OY
+
+Monthly assessment
+
+Grammar
+Vocabulary
+Listening
+Reading
+Speaking
+Writing
+Pronunciation
+
+natijalari.
+
+Masalan:
+
+Overall: B1.2
+
+Grammar: B1
+Reading: B1+
+Listening: A2+
+Speaking: B1-
+Writing: A2+
+
+Bu foydalanuvchiga bitta umumiy raqam bilan aldovchi baho berishdan ko‘ra, qaysi ko‘nikmasi qayerdaligini ko‘rsatadi.
+
+
+---
+
+30. LEVEL TEST
+
+Ilova birinchi kirganda:
+
+Placement Test
+
+Grammar
+
+30
+
+Vocabulary
+
+30
+
+Reading
+
+10
+
+Listening
+
+10
+
+Writing
+
+1
+
+Speaking
+
+1
+
+AI natijani tahlil qilib:
+
+> Recommended starting point: A2/B1
+
+
+
+deydi.
+
+
+---
+
+31. “EXPLAIN WHY” MODE
+
+Siz aytgan juda muhim funksiya.
+
+Masalan:
+
+> She has lived here since 2020.
+
+
+
+Savol:
+
+Why “has lived”?
+
+AI:
+
+> Because the action started in the past and continues until now.
+
+
+
+Keyin:
+
+Compare
+
+> She lived here in 2020.
+
+
+
+va
+
+> She has lived here since 2020.
+
+
+
+farqini tushuntiradi.
+
+
+---
+
+32. TRANSLATION MODE
+
+3 rejim:
+
+Uzbek → English
+
+English → Uzbek
+
+Mixed
+
+Lekin translation asosiy metod emas.
+
+U production practice sifatida ishlatiladi.
+
+
+---
+
+33. DICTATION
+
+Audio:
+
+> I have been working here for three years.
+
+
+
+User yozadi:
+
+> I have been working here for three years.
+
+
+
+App tekshiradi:
+
+spelling
+
+missing words
+
+punctuation
+
+contractions
+
+
+
+---
+
+34. SHADOWING
+
+Audio:
+
+> What have you been doing?
+
+
+
+User:
+
+🎙️ speaks
+
+Keyin:
+
+> Repeat.
+
+
+
+Bu speaking + listening + pronunciationni birlashtiradi.
+
+
+---
+
+35. CONVERSATION SIMULATOR
+
+AI bilan:
+
+Restaurant
+
+Airport
+
+Job interview
+
+Doctor
+
+Shopping
+
+University
+
+Office
+
+Meeting
+
+Hotel
+
+Casual conversation
+
+Debate
+
+Presentation
+
+Levelga qarab murakkablashadi.
+
+A1:
+
+> What's your name?
+
+
+
+C1:
+
+> What factors do you think have contributed to this trend?
+
+
+
+
+---
+
+36. AI TEACHER PERSONALITY
+
+Foydalanuvchi:
+
+> Explain in Uzbek
+
+
+
+desa — Uzbek.
+
+> English only
+
+
+
+desa — English.
+
+> Speak slowly
+
+
+
+desa — sekin.
+
+> Don't give me the answer
+
+
+
+desa — hint beradi.
+
+> Explain why
+
+
+
+desa — reasoning beradi.
+
+
+---
+
+37. HINT SYSTEM
+
+Javobni darhol bermaydi.
+
+Hint 1
+
+First letter.
+
+Hint 2
+
+Grammar rule.
+
+Hint 3
+
+Example.
+
+Hint 4
+
+Almost complete answer.
+
+Reveal
+
+Full answer.
+
+Bu o‘quvchini mustaqil fikrlashga majbur qiladi.
+
+
+---
+
+38. “SECOND ATTEMPT” SYSTEM
+
+Sizning test platformangizdagi 2 urinish g‘oyasiga o‘xshash:
+
+1-attempt:
+
+❌ xato
+
+↓
+
+Explanation
+
+↓
+
+Similar question
+
+↓
+
+2-attempt
+
+↓
+
+Success
+
+Shunda xato o‘rganish materialiga aylanadi.
+
+
+---
+
+39. CONTENT GENERATOR
+
+Admin/teacher panelda:
+
+Topic:
+Present Perfect
+
+Level:
+B1
+
+Generate:
+Grammar lesson
+20 MCQ
+10 fill gaps
+10 word ordering
+10 error correction
+10 translation
+1 reading
+1 listening
+10 vocabulary
+5 speaking prompts
+1 writing
+
+AI bularning barchasini yaratadi.
+
+Lekin AI-generated content human review / validation status bilan saqlanishi kerak.
+
+
+---
+
+40. CONTENT DATABASE
+
+Har bir content:
+
+id
+level
+unit
+day
+topic
+skill
+difficulty
+question
+options
+correct_answer
+explanation
+translation
+vocabulary
+audio
+image
+video
+source
+license
+tags
+
+
+---
+
+41. APP DASHBOARD
+
+Bosh sahifa:
+
+Good morning, Shodlik 👋
+
+Your level
+B1
+
+🔥 18 day streak
+
+Today's progress
+███████░░░ 72%
+
+Continue learning
+[ Day 126 ]
+
+Today's mission
+
+📚 Vocabulary
+🎧 Listening
+📖 Reading
+🧠 Grammar
+🗣 Speaking
+✍️ Writing
+
+
+---
+
+42. ASOSIY MENU
+
+Pastki navigation:
+
+🏠 Home
+
+📚 Learn
+
+🧠 Review
+
+🎯 Practice
+
+🗣 Speak
+
+📊 Progress
+
+
+---
+
+43. LEARN
+
+PRE-A1
+A1
+A2
+B1
+B1+
+B2
+B2+
+C1
+
+Har biri:
+
+locked/unlocked/progress
+
+
+---
+
+44. PRACTICE
+
+Grammar
+Vocabulary
+Listening
+Reading
+Writing
+Speaking
+Pronunciation
+Translation
+Dictation
+Mistakes
+
+
+---
+
+45. REVIEW
+
+Bugungi:
+
+> 47 cards due
+
+
+
+bo‘ladi.
+
+10 new
+25 learning
+12 review
+
+
+---
+
+46. ERROR CENTER
+
+My mistakes
+
+Grammar
+Vocabulary
+Listening
+Speaking
+Writing
+Pronunciation
+
+Har bir xatoni bosganda:
+
+> What was wrong?
+
+
+
+> Why?
+
+
+
+> Correct example
+
+
+
+> New exercise
+
+
+
+
+---
+
+47. PROGRESS
+
+Grafiklar:
+
+Grammar      74%
+Vocabulary   81%
+Listening    63%
+Reading      78%
+Speaking     58%
+Writing      66%
+
+Bundan tashqari:
+
+Words learned
+
+Active words
+
+Phrases
+
+Lessons completed
+
+Listening minutes
+
+Speaking minutes
+
+Writing words
+
+Test accuracy
+
+
+---
+
+48. CEFR PROGRESS
+
+A1  ██████████ 100%
+A2  ██████████ 100%
+B1  ████████░░ 82%
+B2  ██░░░░░░░░ 21%
+C1  ░░░░░░░░░░ 0%
+
+Bu CEFRning olti darajali tuzilmasiga mos keladi. 
+
+
+---
+
+49. ADMIN PANEL
+
+Admin:
+
+Course Builder
+
+Lesson Builder
+
+Vocabulary Manager
+
+Grammar Manager
+
+Audio Manager
+
+Video Manager
+
+Image Manager
+
+Question Bank
+
+AI Generator
+
+User Statistics
+
+Error Analytics
+
+CEFR mapping
+
+Content approval
+
+
+---
+
+50. AI CONTENT PIPELINE
+
+Masalan admin:
+
+> Create B1 lesson about Present Perfect.
+
+
+
+AI:
+
+Lesson
+↓
+Grammar
+↓
+Vocabulary
+↓
+Phrases
+↓
+Reading
+↓
+Listening script
+↓
+Exercises
+↓
+Speaking
+↓
+Writing
+↓
+Review cards
+↓
+Test
+
+yaratadi.
+
+
+---
+
+51. AI CONTENT VALIDATION
+
+Bu juda muhim.
+
+AI yaratgan material:
+
+GENERATED
+
+holatda bo‘ladi.
+
+Teacher tekshiradi:
+
+APPROVED
+
+yoki:
+
+NEEDS REVISION
+
+Shundan keyingina learnerga chiqadi.
+
+
+---
+
+52. AUDIO GENERATION
+
+Har lesson uchun:
+
+slow
+normal
+fast
+
+uch xil audio.
+
+Masalan:
+
+A1
+
+0.75x natural speech.
+
+B2
+
+normal.
+
+C1
+
+natural fast speech.
+
+
+---
+
+53. AUDIO TRANSCRIPT
+
+[00:00]
+I usually wake up at seven.
+
+[00:04]
+Then I have breakfast...
+
+So‘zni bosganda:
+
+> pronunciation
+translation
+definition
+
+
+
+chiqadi.
+
+
+---
+
+54. WORD CLICK SYSTEM
+
+Reading:
+
+> I decided to change my career.
+
+
+
+“decided” bosiladi.
+
+Popup:
+
+decide
+/dɪˈsaɪd/
+
+verb
+
+qaror qilmoq
+
+decide to do something
+
+I decided to study English.
+
+Add to flashcards
+
+button.
+
+
+---
+
+55. OFFLINE MODE
+
+APK uchun juda muhim.
+
+Internet bo‘lmasa:
+
+downloaded lessons
+
+vocabulary
+
+flashcards
+
+grammar
+
+reading
+
+basic tests
+
+
+ishlashi kerak.
+
+Internet kerak:
+
+AI
+
+speech analysis
+
+online video
+
+cloud sync
+
+
+uchun.
+
+
+---
+
+56. SYNCHRONIZATION
+
+User login:
+
+Google
+Telegram
+Email
+
+Progress cloudga:
+
+user
+level
+XP
+streak
+cards
+mistakes
+lessons
+tests
+speaking
+writing
+
+saqlanadi.
+
+Telefon almashtirganda progress yo‘qolmaydi.
+
+
+---
+
+57. OFFLINE-FIRST ARCHITECTURE
+
+Men agentga:
+
+> Offline-first architecture
+
+
+
+talabini berishni tavsiya qilaman.
+
+
+---
+
+58. APK TEXNIK STRUKTURA
+
+Agentga quyidagicha topshiriq berish mumkin:
+
+english-master/
+
+frontend/
+    mobile/
+    web/
+
+backend/
+    api/
+    auth/
+    progress/
+    lessons/
+    vocabulary/
+    review/
+    assessment/
+    ai/
+
+content/
+    pre-a1/
+    a1/
+    a2/
+    b1/
+    b1-plus/
+    b2/
+    b2-plus/
+    c1/
+
+database/
+    users
+    lessons
+    vocabulary
+    phrases
+    grammar
+    exercises
+    flashcards
+    reviews
+    mistakes
+    progress
+    assessments
+    media
+
+
+---
+
+59. DATABASE
+
+users
+
+id
+name
+email
+level
+created_at
+
+vocabulary
+
+id
+word
+translation
+definition
+pronunciation
+part_of_speech
+example
+collocations
+synonyms
+antonyms
+level
+image
+audio
+
+flashcards
+
+id
+user_id
+vocabulary_id
+state
+interval
+ease
+due_date
+reviews
+correct_count
+wrong_count
+
+mistakes
+
+id
+user_id
+type
+question
+user_answer
+correct_answer
+explanation
+count
+last_seen
+
+
+---
+
+60. ADAPTIVE ENGINE
+
+Algoritm:
+
+User answers
+        ↓
+Analyze
+        ↓
+Update skill profile
+        ↓
+Detect weakness
+        ↓
+Generate targeted practice
+        ↓
+Schedule review
+        ↓
+Measure improvement
+
+Bu ilovaning “miyasi” bo‘ladi.
+
+
+---
+
+61. ENG MUHIM: COURSE LINEAR BO‘LMAYDI
+
+Oddiy kurs:
+
+> Day 1 → Day 2 → Day 3
+
+
+
+Sizning kurs:
+
+> Day 1 → Day 2 → weakness detected → review → new lesson → old mistake → speaking → continue
+
+
+
+bo‘ladi.
+
+Bu personalized curriculum.
+
+CEFRning o‘zi ham tayyor, barcha kontekstga bir xil qo‘llanadigan kurs emas; u kontekstga moslashtirilishi kerakligini ta'kidlaydi. 
+
+
+---
+
+62. BIR KUNLIK REAL NAMUNA
+
+Masalan:
+
+DAY 37 — A2
+
+Topic
+
+My Weekend
+
+Grammar
+
+Past Simple vs Past Continuous
+
+Vocabulary
+
+visit
+travel
+arrive
+leave
+enjoy
+meet
+spend
+decide
+weather
+restaurant
+
+Phrases
+
+I had a great time.
+
+We decided to...
+
+While I was...
+
+It was really enjoyable.
+
+
+---
+
+Grammar explanation
+
+Uzbekcha:
+
+> Past Simple — tugallangan harakat.
+
+
+
+> Past Continuous — o'tmishda davom etayotgan jarayon.
+
+
+
+Example:
+
+> I watched TV.
+
+
+
+> I was watching TV when he called.
+
+
+
+
+---
+
+Exercise
+
+1
+
+I ___ TV when he called.
+
+A) watched
+B) was watching ⭐
+C) watch
+D) am watching
+
+
+---
+
+Error correction
+
+> I was watch TV.
+
+
+
+↓
+
+> I was watching TV.
+
+
+
+
+---
+
+Listening
+
+2-minute dialogue.
+
+
+---
+
+Dictation
+
+10 sentences.
+
+
+---
+
+Reading
+
+250 words.
+
+
+---
+
+Speaking
+
+> Tell me what you did last weekend.
+
+
+
+
+---
+
+Writing
+
+> Write 100 words about your weekend.
+
+
+
+
+---
+
+Flashcards
+
+15 new
+
+25 review
+
+
+---
+
+Final test
+
+20 questions.
+
+
+---
+
+63. B2 DARS NAMUNASI
+
+Topic
+
+Technology and Society
+
+Grammar:
+
+Advanced passive + modal deduction
+
+Vocabulary:
+
+implement
+impact
+innovation
+privacy
+regulation
+efficient
+controversial
+widespread
+
+Phrases:
+
+> play a significant role
+
+
+
+> raise concerns about
+
+
+
+> be widely regarded as
+
+
+
+> have a profound impact on
+
+
+
+Reading:
+
+600 words.
+
+Listening:
+
+5 minutes.
+
+Speaking:
+
+> Do you think technology has improved people's lives?
+
+
+
+Writing:
+
+> Write a 250-word argumentative essay.
+
+
+
+Keyin AI:
+
+structure + grammar + vocabulary + coherence + register
+
+bo‘yicha feedback beradi.
+
+
+---
+
+64. C1 DARS
+
+Topic
+
+The Future of Work
+
+Reading:
+
+1000 words.
+
+Listening:
+
+8–10 minutes.
+
+Vocabulary:
+
+nuance / register / collocation.
+
+Task:
+
+> Summarise the speaker's argument.
+
+
+
+Keyin:
+
+> Give an alternative interpretation.
+
+
+
+Keyin:
+
+> Defend your position.
+
+
+
+Writing:
+
+> Write a structured analytical essay.
+
+
+
+Bu C1 uchun kerak bo‘ladigan murakkab matnni qayta ishlash va fikrlarni boshqa auditoriyaga moslab yetkazish kabi ko‘nikmalarga yaqinlashadi. 
+
+
+---
+
+65. “IMMERSION MODE”
+
+Bu alohida rejim bo‘ladi.
+
+A1
+
+90% Uzbek / 10% English
+
+A2
+
+70 / 30
+
+B1
+
+50 / 50
+
+B2
+
+20 / 80
+
+C1
+
+English only.
+
+Foydalanuvchi:
+
+English Only Mode
+
+ni ham yoqishi mumkin.
+
+
+---
+
+66. “TEACHER MODE”
+
+AI o‘qituvchi:
+
+> “Try again.”
+
+
+
+> “Think about the tense.”
+
+
+
+> “Look at the time expression.”
+
+
+
+> “What happened first?”
+
+
+
+deydi.
+
+Darhol javob bermaydi.
+
+
+---
+
+67. “EXAM MODE”
+
+Timer.
+
+No hints.
+
+No translation.
+
+Random questions.
+
+Speaking.
+
+Writing.
+
+Listening.
+
+Final report.
+
+
+---
+
+68. “RELAX MODE”
+
+O‘yin orqali:
+
+🎮 vocabulary
+
+🎧 music-style listening exercises
+
+🧩 sentence puzzle
+
+🧠 memory
+
+🏆 XP
+
+Bu kunlari motivatsiya uchun.
+
+
+---
+
+69. ENG MUHIM METRIKALAR
+
+App foydalanuvchiga:
+
+❌ “You know 5,000 words”
+
+deb shunchaki aytmasin.
+
+Balki:
+
+Recognized
+
+4,800
+
+Recalled
+
+3,100
+
+Used actively
+
+1,850
+
+Mastered
+
+1,200
+
+deb ajratsin.
+
+Bu ancha foydali.
+
+
+---
+
+70. MASTERED WORD
+
+So‘z:
+
+mastered
+
+bo‘lishi uchun masalan:
+
+meaning → correct
+
+English → Uzbek
+
+Uzbek → English
+
+audio → word
+
+word → sentence
+
+speaking usage
+
+writing usage
+
+
+kabi bir nechta kontekstda to‘g‘ri ishlatilishi talab qilinadi.
+
+
+---
+
+71. “DON'T TRANSLATE” TRAINING
+
+B1dan boshlab ayrim mashqlar:
+
+> Don't translate.
+
+
+
+Instead:
+
+🖼️ image → English
+
+🎧 audio → meaning
+
+English definition → word
+
+English context → word
+
+Bu English-thinkingni rivojlantirishga xizmat qiladi.
+
+
+---
+
+72. CONTENT SOURCES
+
+Kontentni uch qatlamga ajratgan bo‘lardim:
+
+1. Original content
+
+Bizning teacher/AI yaratgan materiallar.
+
+2. Licensed/public resources
+
+Ruxsat berilgan audio/video/image.
+
+3. External links
+
+YouTube/Pinterest kabi manbalarga havola.
+
+Shunda copyright muammosi kamayadi.
+
+
+---
+
+73. AGENTGA BERILADIGAN ASOSIY TOPSHIRIQ
+
+Agentga “English app yasab ber” desangiz, u oddiy app chiqarib qo‘yishi mumkin.
+
+Buning o‘rniga unga PRD sifatida quyidagi talabni berish kerak:
+
+> Build an adaptive CEFR-aligned English learning platform from Pre-A1 to C1.
+
+The application must integrate grammar, vocabulary, active phrases, listening, reading, speaking, writing, pronunciation, spaced repetition, error correction, adaptive learning, games, flashcards, daily missions, progress tracking and AI tutoring.
+
+Each daily lesson must connect one theme across all skills rather than teaching isolated grammar.
+
+Every exercise must provide immediate feedback, explanation, Uzbek support when required, and a second attempt.
+
+The system must maintain a personal error bank and automatically generate targeted revision.
+
+Vocabulary must support image, audio, definition, translation, example, collocations, word family, synonyms, antonyms, active/passive status and spaced repetition.
+
+The flashcard system must support active recall and multiple directions: image→word, word→meaning, Uzbek→English, English→Uzbek, audio→word, sentence completion and speaking prompts.
+
+Listening must support transcript, subtitles, adjustable playback speed, comprehension questions, dictation and shadowing.
+
+Reading must support clickable vocabulary, comprehension, inference, summary and speaking/writing follow-up tasks.
+
+Speaking must support AI conversation, pronunciation analysis, fluency feedback and grammar correction.
+
+Writing must support AI correction, explanation, rewriting and progressive difficulty.
+
+The curriculum must be divided into Pre-A1, A1, A2, B1, B1+, B2, B2+ and C1.
+
+The system must use CEFR descriptors as the curriculum framework and map each lesson and assessment to specific skills and outcomes.
+
+The platform must support offline lessons and synchronized cloud progress.
+
+Include learner dashboard, teacher/admin dashboard, content management, AI content generation, approval workflow, analytics, assessment engine and adaptive learning engine.
+
+The UI must be modern, fast, responsive, accessible and optimized for Android APK and web.
+
+Do not build a static collection of pages. Build a real learning engine where learner performance dynamically changes review, practice and lesson recommendations.
+
+
+
+
+---
+
+74. MENINGCHA ENG MUHIM ARXITEKTURA
+
+Buni 3 ta qatlam qilib qurish kerak:
+
+ENGLISH MASTER
+                   │
+        ┌──────────┴──────────┐
+        │                     │
+   COURSE ENGINE          AI TEACHER
+        │                     │
+ Grammar/Vocab          Conversation
+ Listening/Reading      Correction
+ Writing/Speaking       Explanation
+        │                     │
+        └──────────┬──────────┘
+                   │
+             LEARNING ENGINE
+                   │
+       ┌───────────┼───────────┐
+       │           │           │
+ Spaced Review  Error Bank  Analytics
+       │           │           │
+       └───────────┼───────────┘
+                   │
+              USER PROFILE
+
+Asosiy kuch aynan Learning Engine'da bo‘ladi.
+
+
+---
+
+75. VA ENG MUHIMI — BU KURSNI BIR MARTADA YARATISH SHART EMAS
+
+Men buni quyidagicha ishlab chiqishni tavsiya qilaman:
+
+Phase 1
+
+Pre-A1 → A2
+
+Grammar + vocabulary + reading + listening + flashcard + test.
+
+Phase 2
+
+B1
+
+Speaking + writing + adaptive system.
+
+Phase 3
+
+B2
+
+Advanced grammar + authentic content + AI conversation.
+
+Phase 4
+
+C1
+
+Academic/professional English + advanced speaking/writing + synthesis.
+
+Phase 5
+
+AI adaptive teacher
+
+Foydalanuvchining xatolarini o‘zi aniqlab, keyingi darsni o‘zi moslashtiradi.
+
+
+---
+
+🔥 Natijada nima hosil bo‘ladi?
+
+Bu shunchaki:
+
+“Grammar app”
+
+emas.
+
+Balki:
+
+> Duolingo + Anki + Quizlet + AI Tutor + Speaking Coach + Writing Coach + CEFR course + Personal Teacher
+
+
+
+g‘oyalarining birlashtirilgan, bitta tizimga bog‘langan versiyasi bo‘ladi.
+
+Va eng muhimi, CEFRni faqat “level nomi” sifatida ishlatmaymiz — har bir bosqichda “nima qila olishi kerak?” degan aniq skill-deskriptorlarga bog‘laymiz. Council of Europe CEFRni aynan curriculum, material va assessmentni rejalashtirish uchun ishlatiladigan framework sifatida ta'riflaydi. 
+
+Keyingi bosqichda men buni yanada amaliy shaklga o'tkazib, sizga DAY 1 → DAY 730 gacha bo'lgan to'liq curriculum generator spetsifikatsiyasini — har bir kun uchun grammar, 10–20 vocabulary, active phrases, listening, reading, speaking, writing, mashq turlari va review algoritmi bilan — hamda agentga beriladigan bitta ulkan “MASTER PROMPT” ko‘rinishida tuzib berishim mumkin.
