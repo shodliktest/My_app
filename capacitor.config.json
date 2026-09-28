@@ -12,7 +12,9 @@
     "cleartext": true,
     "allowNavigation": [
       "myapp-rose-alpha.vercel.app",
-      "*.vercel.app"
+      "*.vercel.app",
+      "code.responsivevoice.org",
+      "*.responsivevoice.org"
     ]
   }
 }
