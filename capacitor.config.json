@@ -1,14 +1,10 @@
 {
   "appId": "uz.shodlik.education",
   "appName": "Shodlik Education",
-  "webDir": "mobile-shell",
+  "webDir": ".output/public",
   "bundledWebRuntime": false,
   "android": {
-    "backgroundColor": "#0a1628",
-    "allowMixedContent": true
-  },
-  "server": {
-    "androidScheme": "https",
-    "cleartext": true
+    "backgroundColor": "#F7FBF9",
+    "allowMixedContent": false
   }
 }

@@ -145,8 +145,7 @@ function authPopupPlugin(): Plugin {
 // `0.0.0.0:8080` is the live-preview contract — don't change host/port.
 // The dev server starts once `src/router.tsx` and `src/routes/` exist — see
 // AGENTS.md § "First scaffold".
-export default defineConfig(({ command, isPreview }) => ({
-  base: "/",
+export default defineConfig(({ command, isPreview, mode }) => ({
   server: {
     host: "0.0.0.0",
     port: 8080,
@@ -167,10 +166,27 @@ export default defineConfig(({ command, isPreview }) => ({
     // PWA head + ?install=1 tutorial page; runs before Start/Nitro.
     grokPwaPlugin(),
     tailwindcss(),
-    tanstackStart({
-      spa: { enabled: true },
-    }),
-    ...(command === "build" || isPreview
+    tanstackStart(
+      mode === "mobile"
+        ? {
+            // Capacitor ships only static web assets. TanStack Start's
+            // official SPA mode produces a client-side shell and avoids
+            // requiring the Nitro/Vercel server runtime inside the APK.
+            spa: {
+              enabled: true,
+              prerender: {
+                enabled: true,
+                outputPath: "/index.html",
+                crawlLinks: false,
+                retryCount: 1,
+              },
+            },
+          }
+        : undefined,
+    ),
+    // The web deployment keeps its Vercel/Nitro server build. The mobile
+    // build deliberately skips it so the APK has no Vercel runtime dependency.
+    ...(mode !== "mobile" && (command === "build" || isPreview)
       ? [
           nitro({
             preset: "vercel",

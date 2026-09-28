@@ -16,6 +16,13 @@ export type LessonMastery = {
 export const MASTERY_THRESHOLD = 80;
 export const REVIEW_THRESHOLD = 60;
 
+/** Return a learner skill as a rounded percentage (0 when untracked). */
+export function skillPct(skills: SkillScores, skill: Skill): number {
+  const score = skills[skill];
+  if (!score || score.total <= 0) return 0;
+  return Math.round((score.correct / score.total) * 100);
+}
+
 const SKILL_WEIGHTS: Partial<Record<Skill, number>> = {
   grammar: 1.2,
   vocabulary: 1,
@@ -123,10 +130,3 @@ export function weightedSkillScore(skills: SkillScores) {
   }
   return weight ? Math.round(weighted / weight) : 0;
 }
-
-export function skillPct(skills: SkillScores, skill: Skill) {
-  const s = skills[skill];
-  if (!s || !s.total) return 0;
-  return Math.round((s.correct / s.total) * 100);
-}
-

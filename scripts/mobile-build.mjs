@@ -1,22 +1,26 @@
 #!/usr/bin/env node
 /**
- * Mobile web bundle for Capacitor.
- * Production APK uses server.url (Vercel). Local .output/public is fallback shell.
+ * Build the Shodlik Education client for a self-contained Capacitor APK.
+ *
+ * Mobile mode uses TanStack Start SPA mode and MUST NOT depend on a Vercel/Nitro
+ * server at runtime. The script normalizes the static build output into the
+ * directory declared by capacitor.config.json: .output/public.
  */
 import { spawn } from "node:child_process";
 import {
+  cpSync,
   existsSync,
   mkdirSync,
-  writeFileSync,
-  cpSync,
-  readdirSync,
   readFileSync,
+  renameSync,
+  rmSync,
+  writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(fileURLToPath(new URL("..", import.meta.url)));
-const out = join(root, ".output", "public");
+const publicDir = join(root, ".output", "public");
 
 function run(command, args, env = {}) {
   return new Promise((resolve, reject) => {
@@ -25,6 +29,7 @@ function run(command, args, env = {}) {
       stdio: "inherit",
       env: { ...process.env, ...env },
     });
+
     child.on("error", reject);
     child.on("exit", (code, signal) => {
       if (signal) reject(new Error(`${command} terminated by ${signal}`));
@@ -34,10 +39,9 @@ function run(command, args, env = {}) {
   });
 }
 
-function copyDir(src, dest) {
-  mkdirSync(dest, { recursive: true });
-  cpSync(src, dest, { recursive: true });
-}
+// Remove the previous normalized output so stale files cannot accidentally
+// make a broken build look valid.
+rmSync(publicDir, { recursive: true, force: true });
 
 await run(
   process.platform === "win32" ? "node.exe" : "node",
@@ -49,67 +53,102 @@ await run(
     "--mode",
     "mobile",
   ],
-  { VITE_AUTH_ENABLED: "false" },
+  {
+    VITE_AUTH_ENABLED: "false",
+  },
 );
 
-mkdirSync(out, { recursive: true });
-
+/**
+ * TanStack Start's output location can differ by the active build adapter.
+ * Prefer the direct public output, then known static adapter locations.
+ */
 const candidates = [
-  join(root, ".output", "public"),
-  join(root, ".vercel", "output", "static"),
-  join(root, "dist", "client"),
-  join(root, "dist"),
+  {
+    dir: publicDir,
+    index: join(publicDir, "index.html"),
+    shell: join(publicDir, "_shell.html"),
+  },
+  {
+    dir: join(root, ".vercel", "output", "static"),
+    index: join(root, ".vercel", "output", "static", "index.html"),
+    shell: join(root, ".vercel", "output", "static", "_shell.html"),
+  },
+  {
+    dir: join(root, "dist"),
+    index: join(root, "dist", "index.html"),
+    shell: join(root, "dist", "_shell.html"),
+  },
+  {
+    dir: join(root, "dist", "client"),
+    index: join(root, "dist", "client", "index.html"),
+    shell: join(root, "dist", "client", "_shell.html"),
+  },
+  {
+    dir: join(root, "build"),
+    index: join(root, "build", "index.html"),
+    shell: join(root, "build", "_shell.html"),
+  },
+  {
+    dir: join(root, "build", "client"),
+    index: join(root, "build", "client", "index.html"),
+    shell: join(root, "build", "client", "_shell.html"),
+  },
 ];
 
-let source = null;
-for (const c of candidates) {
-  if (existsSync(join(c, "index.html")) || existsSync(join(c, "assets"))) {
-    source = c;
-    break;
-  }
-}
+const source = candidates.find(
+  (candidate) => existsSync(candidate.index) || existsSync(candidate.shell),
+);
 
 if (!source) {
-  console.error("No static build output found.");
-  process.exit(1);
-}
-
-if (source !== out) {
-  console.log("Copying", source, "->", out);
-  copyDir(source, out);
-}
-
-const indexPath = join(out, "index.html");
-if (!existsSync(indexPath)) {
-  const assetsDir = join(out, "assets");
-  let js = "";
-  let css = "";
-  if (existsSync(assetsDir)) {
-    for (const f of readdirSync(assetsDir)) {
-      if (!js && /^index-.*\.js$/.test(f)) js = f;
-      if (!css && /^styles-.*\.css$/.test(f)) css = f;
-    }
-  }
-  writeFileSync(
-    indexPath,
-    `<!DOCTYPE html><html lang="uz"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Shodlik Education</title>
-${css ? `<link rel="stylesheet" href="/assets/${css}"/>` : ""}
-</head><body style="margin:0;background:#F7FBF9"><div id="root"></div>
-${js ? `<script type="module" src="/assets/${js}"></script>` : ""}
-</body></html>`,
+  throw new Error(
+    [
+      "Mobile build failed: no static HTML entry was produced.",
+      "Checked:",
+      ...candidates.map((candidate) => `- ${candidate.index}`),
+      ...candidates.map((candidate) => `- ${candidate.shell}`),
+    ].join("\n"),
   );
 }
 
+// Normalize adapter output into Capacitor's webDir.
+if (source.dir !== publicDir) {
+  mkdirSync(publicDir, { recursive: true });
+  cpSync(source.dir, publicDir, { recursive: true });
+}
+
+const normalizedIndex = join(publicDir, "index.html");
+const normalizedShell = join(publicDir, "_shell.html");
+
+// Capacitor loads index.html directly. TanStack Start's SPA shell may be named
+// _shell.html, so promote it to index.html when necessary.
+if (!existsSync(normalizedIndex) && existsSync(normalizedShell)) {
+  renameSync(normalizedShell, normalizedIndex);
+}
+
+if (!existsSync(normalizedIndex)) {
+  throw new Error(
+    "Mobile build failed: normalized .output/public/index.html was not produced.",
+  );
+}
+
+// Sanity-check that the normalized entry is actually HTML, not an empty file.
+const html = readFileSync(normalizedIndex, "utf8");
+if (!/<html[\s>]/i.test(html) || !/<script[\s>]/i.test(html)) {
+  throw new Error(
+    "Mobile build failed: .output/public/index.html is not a valid app shell.",
+  );
+}
+
+const marker = join(publicDir, "shodlik-mobile.json");
 writeFileSync(
-  join(out, "shodlik-mobile.json"),
+  marker,
   JSON.stringify(
     {
       app: "Shodlik Education",
-      mode: "hybrid-vercel",
-      server: "https://myapp-rose-alpha.vercel.app",
+      mode: "offline-first",
       auth: "disabled",
+      remoteRequired: false,
+      output: ".output/public",
       builtAt: new Date().toISOString(),
     },
     null,
@@ -117,4 +156,5 @@ writeFileSync(
   ) + "\n",
 );
 
-console.log("Mobile web build ready:", out);
+console.log("Mobile web build ready: .output/public");
+console.log(`Mobile entry: ${normalizedIndex}`);

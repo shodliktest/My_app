@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/** Prepare Android without requiring Capacitor packages in the normal web bundle. */
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
@@ -21,19 +22,18 @@ function run(command, args) {
   });
 }
 
-for (const f of ["index.html", "logo.png", "offline-no-internet.png"]) {
-  if (!existsSync(join(root, "mobile-shell", f))) {
-    throw new Error("mobile-shell/" + f + " missing");
-  }
-}
-
 await run(npm, [
-  "install", "--no-save", "--no-package-lock",
-  `@capacitor/core@${CAP}`, `@capacitor/cli@${CAP}`, `@capacitor/android@${CAP}`,
+  "install",
+  "--no-save",
+  "--no-package-lock",
+  `@capacitor/core@${CAP}`,
+  `@capacitor/cli@${CAP}`,
+  `@capacitor/android@${CAP}`,
 ]);
 
 if (!existsSync(join(root, "android"))) {
   await run(npx, ["cap", "add", "android"]);
 }
+
 await run(npx, ["cap", "sync", "android"]);
-console.log("Capacitor Android ready (splash + offline shell).");
+console.log("Capacitor Android project is ready.");
