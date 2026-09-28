@@ -1,0 +1,49 @@
+name: Shodlik Education Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main", "master"]
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install deps
+        run: npm install --no-audit --no-fund --ignore-scripts || npm install --no-audit --no-fund
+
+      - name: Prepare Capacitor (splash + offline)
+        run: npm run mobile:prepare
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools platforms;android-34 build-tools;34.0.0
+
+      - name: Assemble debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shodlik-education-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
