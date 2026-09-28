@@ -100,9 +100,6 @@
     }
 
     // Ilova muvaffaqiyatli yuklanganda: splash yashirinadi, iframe ko'rinadi.
-    // Bu YAGONA "muvaffaqiyat" yo'li — hech qanday brauzer xato sahifasi
-    // hech qachon ekranga chiqmaydi, chunki xato bo'lsa bu funksiya
-    // umuman chaqirilmaydi (pastdagi onerror/timeout ishlaydi).
     function showApp() {
       if (settled) return;
       settled = true;
@@ -112,10 +109,10 @@
       splash.classList.add("hide");
     }
 
-    // Muvaffaqiyatsizlik: faqat bizning rasmimiz ko'rinadi, hech qanday
-    // "ERR_INTERNET_DISCONNECTED" yoki shunga o'xshash tizim xatosi emas —
-    // chunki iframe navigatsiyasi bu sahifadan (top-level) chiqib ketmaydi,
-    // muvaffaqiyatsiz iframe shunchaki bo'sh qoladi va biz uni yashiramiz.
+    // Muvaffaqiyatsizlik: faqat bizning rasmimiz ko'rinadi. iframe hech
+    // qachon shu servergacha yuklanishga urinmaydi (probe muvaffaqiyatsiz
+    // bo'lsa frame.src umuman o'rnatilmaydi), shuning uchun Chromium'ning
+    // o'z "Webpage not available" sahifasi hech qachon ko'rinmaydi.
     function showOffline() {
       if (settled) return;
       settled = true;
@@ -126,34 +123,52 @@
       offline.classList.add("show");
     }
 
+    // Muhim: bir iframe DNS/tarmoq xatosi bilan yuklanolmasa (masalan
+    // net::ERR_NAME_NOT_RESOLVED), Chromium baribir uning ICHIGA o'z tizim
+    // xato sahifasini chizadi va shunga qaramay "load" hodisasini otadi —
+    // "error" emas. Shuning uchun iframe.onerror'ga tayanib bo'lmaydi: u
+    // faqat rasm/skript kabi resurslarda ishlaydi, sahifa navigatsiyasida
+    // deyarli hech qachon otilmaydi. Haqiqiy signal — mustaqil fetch orqali
+    // serverga yetib borish-bormasligini oldindan bilish (probe), va faqat
+    // muvaffaqiyatli bo'lgandagina iframe.src ni o'rnatish.
+    function probe() {
+      return new Promise(function (resolve) {
+        if (!navigator.onLine) { resolve(false); return; }
+        var ctrl = new AbortController();
+        var t = setTimeout(function () { ctrl.abort(); }, 6000);
+        fetch(APP_URL + "/?_ping=" + Date.now(), {
+          method: "GET", cache: "no-store", mode: "no-cors", signal: ctrl.signal,
+        }).then(function () { clearTimeout(t); resolve(true); })
+          .catch(function () { clearTimeout(t); resolve(false); });
+      });
+    }
+
     function attemptLoad() {
       settled = false;
       clearLoadTimer();
       frame.classList.remove("ready");
+      frame.onload = null;
+      frame.onerror = null;
 
-      if (!navigator.onLine) {
+      probe().then(function (ok) {
+        if (settled) return;
         var wait = Math.max(0, minSplashMs - (Date.now() - started));
-        setTimeout(showOffline, wait);
-        return;
-      }
-
-      // Ilova sahifasi ichkarida (bosslar orqali) sahifani navigate qilishi
-      // mumkin bo'lgani uchun, biz faqat "load qila oldimi" ni kuzatamiz —
-      // load hodisasi otilgach ham ichkarida real render bo'lganini
-      // kutish uchun kichik qo'shimcha vaqt beramiz.
-      frame.onload = function () {
-        var wait = Math.max(0, minSplashMs - (Date.now() - started));
-        setTimeout(showApp, wait);
-      };
-      frame.onerror = function () {
-        var wait = Math.max(0, minSplashMs - (Date.now() - started));
-        setTimeout(showOffline, wait);
-      };
-
-      // Sekin yoki uzilib qolgan ulanish uchun umumiy timeout.
-      loadTimer = setTimeout(showOffline, 12000);
-
-      frame.src = APP_URL + "/";
+        if (!ok) {
+          setTimeout(showOffline, wait);
+          return;
+        }
+        // Probe muvaffaqiyatli — endi haqiqatan yuklaymiz. `load` bu yerda
+        // ishonchli: probe allaqachon server javob berishini tasdiqladi,
+        // shuning uchun endi kelayotgan `load` ilova sahifasining o'zi.
+        frame.onload = function () {
+          setTimeout(showApp, wait);
+        };
+        // Umuman kutilmagan holat uchun umumiy zaxira timeout.
+        loadTimer = setTimeout(showOffline, 12000);
+        setTimeout(function () {
+          frame.src = APP_URL + "/";
+        }, wait);
+      });
     }
 
     function boot() {
@@ -171,6 +186,13 @@
     document.getElementById("retryHit").addEventListener("click", retry);
     window.addEventListener("online", function () {
       if (offline.classList.contains("show")) retry();
+    });
+    // Ilova ALLAQACHON ochilgan holatda ulanish uzilib qolsa (masalan,
+    // foydalanuvchi darsni o'qiyotganda Wi-Fi o'chib qolsa), keyingi
+    // ichki so'rov/navigatsiya Chromiumning o'z xato sahifasini ko'rsatib
+    // yuborishidan oldin darhol bizning offline ekranimizga o'tamiz.
+    window.addEventListener("offline", function () {
+      if (!offline.classList.contains("show")) showOffline();
     });
 
     boot();
