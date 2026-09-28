@@ -9,6 +9,10 @@
   },
   "server": {
     "androidScheme": "https",
-    "cleartext": true
+    "cleartext": true,
+    "allowNavigation": [
+      "myapp-rose-alpha.vercel.app",
+      "*.vercel.app"
+    ]
   }
 }
