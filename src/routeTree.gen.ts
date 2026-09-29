@@ -24,6 +24,7 @@ import { Route as TutorRouteImport } from './routes/tutor'
 import { Route as LearnLessonIdRouteImport } from './routes/learn_.$lessonId'
 import { Route as PracticeSkillRouteImport } from './routes/practice_.$skill'
 import { Route as VocabWordIdRouteImport } from './routes/vocab.$wordId'
+import { Route as ApiTtsRouteImport } from './routes/api.tts'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -100,6 +101,11 @@ const VocabWordIdRoute = VocabWordIdRouteImport.update({
   path: '/vocab/$wordId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiTtsRoute = ApiTtsRouteImport.update({
+  id: '/api/tts',
+  path: '/api/tts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -152,6 +158,7 @@ export interface FileRoutesById {
   '/learn_/$lessonId': typeof LearnLessonIdRoute
   '/practice_/$skill': typeof PracticeSkillRoute
   '/vocab/$wordId': typeof VocabWordIdRoute
+  '/api/tts': typeof ApiTtsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -205,6 +212,7 @@ export interface FileRouteTypes {
     | '/practice_/$skill'
     | '/vocab/$wordId'
     | '/tutor'
+    | '/api/tts'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -325,6 +333,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VocabWordIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/tts': {
+      id: '/api/tts'
+      path: '/api/tts'
+      fullPath: '/api/tts'
+      preLoaderRoute: typeof ApiTtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tutor': {
       id: '/tutor'
       path: '/tutor'
@@ -351,6 +366,7 @@ const rootRouteChildren: RootRouteChildren = {
   LearnLessonIdRoute: LearnLessonIdRoute,
   PracticeSkillRoute: PracticeSkillRoute,
   VocabWordIdRoute: VocabWordIdRoute,
+  ApiTtsRoute: ApiTtsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

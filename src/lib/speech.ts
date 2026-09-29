@@ -21,19 +21,58 @@ declare global {
   }
 }
 
+let currentAudio: HTMLAudioElement | null = null;
+
 /**
- * ResponsiveVoice — Microsoft/Google-darajadagi tabiiy ovozlarni bepul
- * taqdim etadigan xizmat. Qurilma/brauzerning o'z TTS dvigateliga (ko'p
- * Android telefon va Android WebView'da juda cheklangan yoki mavjud
- * bo'lmasligi mumkin) qaraganda barcha qurilmalarda bir xil, sifatli va
- * tushunarli ovoz beradi — shu sabab bu birinchi tanlov.
+ * Birinchi va asosiy ovoz manbai: ilovaning o'z serveri (/api/tts), u
+ * Microsoft Edge'ning bepul, kalit talab qilmaydigan nutq xizmatidan
+ * tayyor MP3 audio generatsiya qilib beradi.
  *
- * Kalit ochiq loyiha uchun ko'chirib qo'yilgan (bepul, umumiy foydalanish
- * darajasi bilan). VITE_RESPONSIVEVOICE_KEY muhit o'zgaruvchisi berilsa,
- * o'sha ustunlik qiladi.
+ * Bu qurilma yoki muhitdan qat'i nazar (brauzer, kompyuter, telefon,
+ * APK/WebView ichida) BIR XIL ishlaydi, chunki mijoz tomonida faqat
+ * oddiy audio faylni yuklab olib ijro etishdan boshqa hech narsa talab
+ * qilinmaydi — hech qanday uchinchi tomon skripti, kalit yoki
+ * domen-cheklovi yo'q. Shu sabab bu ResponsiveVoice yoki qurilmaning
+ * o'z ovozidan oldin sinab ko'riladi.
+ */
+async function serverSpeak(text: string, opts: SpeechOptions): Promise<boolean> {
+  try {
+    const params = new URLSearchParams({ text });
+    if (opts.lang) params.set("lang", opts.lang);
+    if (opts.voice) params.set("voice", opts.voice);
+    if (opts.rate) params.set("rate", String(opts.rate));
+
+    const audio = new Audio(`/api/tts?${params.toString()}`);
+    currentAudio = audio;
+    audio.volume = opts.volume ?? 1;
+
+    const played = await new Promise<boolean>((resolve) => {
+      let settled = false;
+      const finish = (ok: boolean) => {
+        if (settled) return;
+        settled = true;
+        resolve(ok);
+      };
+      audio.oncanplaythrough = () => {
+        audio.play().then(() => finish(true)).catch(() => finish(false));
+      };
+      audio.onerror = () => finish(false);
+      // Sekin/uzilgan ulanish uchun umumiy zaxira.
+      setTimeout(() => finish(false), 8000);
+      audio.load();
+    });
+    return played;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * ResponsiveVoice — ikkinchi zaxira. Ilovaning o'z serveri (masalan,
+ * Vercel funksiyasi vaqtincha ishlamay qolganda) mavjud bo'lmasa
+ * ishlatiladi.
  */
 const RESPONSIVEVOICE_FALLBACK_KEY = "ftro4Sxr";
-
 let responsiveVoicePromise: Promise<ResponsiveVoiceLike | null> | null = null;
 
 function responsiveVoiceKey(): string {
@@ -44,13 +83,6 @@ function responsiveVoiceKey(): string {
   return fromEnv && fromEnv.length > 0 ? fromEnv : RESPONSIVEVOICE_FALLBACK_KEY;
 }
 
-/**
- * ResponsiveVoice skriptini yuklaydi va ovoz mexanizmi HAQIQATAN tayyor
- * bo'lguncha kutadi. `window.responsiveVoice` obyektining mavjudligi
- * yetarli emas — ba'zi qurilmalarda ichki ovoz ro'yxati asinxron tarzda
- * biroz kechroq tayyor bo'ladi, shu payt speak() chaqirilsa ovoz
- * chiqmasligi yoki kesilib qolishi mumkin.
- */
 function loadResponsiveVoice(): Promise<ResponsiveVoiceLike | null> {
   if (typeof window === "undefined") return Promise.resolve(null);
   if (window.responsiveVoice?.voiceSupport?.()) return Promise.resolve(window.responsiveVoice);
@@ -63,12 +95,7 @@ function loadResponsiveVoice(): Promise<ResponsiveVoiceLike | null> {
       settled = true;
       resolve(value);
     };
-
     function waitUntilReady() {
-      // responsiveVoice global obyekt paydo bo'ladi-yu, lekin ovoz mexanizmi
-      // (`voiceSupport`) biroz kech tayyor bo'lishi mumkin — shu holatni
-      // qisqa oraliqlar bilan tekshiramiz, uzoqqa cho'zilib ketsa ham
-      // baribir mavjud obyektni qaytaramiz (speak() baribir urinib ko'radi).
       const rv = window.responsiveVoice;
       if (!rv) return false;
       if (rv.voiceSupport ? rv.voiceSupport() : true) {
@@ -77,28 +104,20 @@ function loadResponsiveVoice(): Promise<ResponsiveVoiceLike | null> {
       }
       return false;
     }
-
-    // ResponsiveVoice tayyor bo'lganda chaqiradigan yuklab olish hodisasi
-    // (mavjud bo'lsa eng ishonchli signal).
     (window as unknown as { responsiveVoiceOnLoad?: () => void }).responsiveVoiceOnLoad = () => {
       waitUntilReady();
     };
-
     const existing = document.querySelector<HTMLScriptElement>(
       'script[data-shodlik-responsivevoice="true"]',
     );
-
     const poll = window.setInterval(() => {
       if (waitUntilReady()) window.clearInterval(poll);
     }, 100);
-
     window.setTimeout(() => {
       window.clearInterval(poll);
       finish(window.responsiveVoice ?? null);
-    }, 5000);
-
+    }, 4000);
     if (existing) return;
-
     const script = document.createElement("script");
     script.src = `https://code.responsivevoice.org/responsivevoice.js?key=${encodeURIComponent(
       responsiveVoiceKey(),
@@ -127,12 +146,7 @@ function pickNativeVoice(voices: SpeechSynthesisVoice[], lang: string) {
   );
 }
 
-/**
- * Qurilmaning o'z ovozi (speechSynthesis). Faqat ResponsiveVoice mutlaqo
- * ishlamay qolganda (tarmoq yo'q va kalit ham yuklanmagan) so'nggi
- * zaxira sifatida ishlatiladi — ko'p Android telefon/WebView'da bu
- * kanal cheklangan yoki hech qanday inglizcha ovoz taqdim etmaydi.
- */
+/** So'nggi zaxira: qurilmaning o'z ovozi. */
 function nativeSpeak(text: string, opts: SpeechOptions = {}) {
   if (typeof window === "undefined" || !window.speechSynthesis || !text.trim()) return false;
   window.speechSynthesis.cancel();
@@ -148,8 +162,6 @@ function nativeSpeak(text: string, opts: SpeechOptions = {}) {
     if (preferred) u.voice = preferred;
     window.speechSynthesis.speak(u);
   };
-  // Ba'zi brauzerlarda getVoices() birinchi chaqiriqda bo'sh massiv
-  // qaytaradi — ro'yxat asinxron yuklanadi.
   if (window.speechSynthesis.getVoices().length === 0) {
     window.speechSynthesis.onvoiceschanged = () => {
       window.speechSynthesis.onvoiceschanged = null;
@@ -162,15 +174,16 @@ function nativeSpeak(text: string, opts: SpeechOptions = {}) {
 }
 
 /**
- * Ovozni o'qish. Har doim avval ResponsiveVoice (bepul, Microsoft/Google
- * darajasidagi tabiiy ovozlar, barcha qurilmalarda bir xil ishlaydi —
- * shu jumladan Android WebView/APK ichida) bilan urinadi; faqat u
- * mutlaqo ishlamasa (masalan hech qanday internet yo'q) qurilmaning
- * o'z ovoziga tushadi.
+ * Ovozni o'qish. Tartib: (1) ilovaning o'z serveri — Microsoft Edge TTS,
+ * barcha qurilmalarda bir xil ishlaydi; (2) ResponsiveVoice; (3)
+ * qurilmaning o'z ovozi.
  */
 export async function speak(text: string, opts: SpeechOptions = {}) {
   if (typeof window === "undefined" || !text.trim()) return;
   stopSpeaking();
+
+  const viaServer = await serverSpeak(text, opts);
+  if (viaServer) return;
 
   const rv = await loadResponsiveVoice();
   if (rv) {
@@ -194,6 +207,8 @@ export async function speak(text: string, opts: SpeechOptions = {}) {
 
 export function stopSpeaking() {
   if (typeof window === "undefined") return;
+  currentAudio?.pause();
+  currentAudio = null;
   window.responsiveVoice?.cancel?.();
   window.speechSynthesis?.cancel();
 }
